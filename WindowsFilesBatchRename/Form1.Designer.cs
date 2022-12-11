@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel_Data = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvFileData = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SourceFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NewFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -128,13 +128,11 @@
             this.panel_ToggleCase = new System.Windows.Forms.Panel();
             this.rdoAllUp = new System.Windows.Forms.RadioButton();
             this.rdoAllLow = new System.Windows.Forms.RadioButton();
-            this.rdoLowToUp = new System.Windows.Forms.RadioButton();
-            this.rdoUpToLow = new System.Windows.Forms.RadioButton();
             this.rdoNoToggle = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel_Data.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFileData)).BeginInit();
             this.panel_optionSetting.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tabExtensionControl.SuspendLayout();
@@ -165,7 +163,7 @@
             // panel_Data
             // 
             this.panel_Data.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_Data.Controls.Add(this.dataGridView1);
+            this.panel_Data.Controls.Add(this.dgvFileData);
             this.panel_Data.Controls.Add(this.btn_startwork);
             this.panel_Data.Controls.Add(this.btn_chooseFolder);
             this.panel_Data.Controls.Add(this.btn_chooseFiles);
@@ -175,21 +173,21 @@
             this.panel_Data.Size = new System.Drawing.Size(1126, 778);
             this.panel_Data.TabIndex = 0;
             // 
-            // dataGridView1
+            // dgvFileData
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvFileData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFileData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.SourceFileName,
             this.NewFileName,
             this.FilePath,
             this.OptionState});
-            this.dataGridView1.Location = new System.Drawing.Point(13, 55);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(1104, 718);
-            this.dataGridView1.TabIndex = 4;
-            this.dataGridView1.Visible = false;
+            this.dgvFileData.Location = new System.Drawing.Point(13, 55);
+            this.dgvFileData.Name = "dgvFileData";
+            this.dgvFileData.RowTemplate.Height = 25;
+            this.dgvFileData.Size = new System.Drawing.Size(1104, 718);
+            this.dgvFileData.TabIndex = 4;
+            this.dgvFileData.Visible = false;
             // 
             // Id
             // 
@@ -225,7 +223,7 @@
             this.FilePath.Name = "FilePath";
             this.FilePath.ReadOnly = true;
             this.FilePath.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.FilePath.Width = 400;
+            this.FilePath.Width = 420;
             // 
             // OptionState
             // 
@@ -244,6 +242,7 @@
             this.btn_startwork.TabIndex = 3;
             this.btn_startwork.Text = "开始重命名";
             this.btn_startwork.UseVisualStyleBackColor = true;
+            this.btn_startwork.Click += new System.EventHandler(this.btnStartWork_Click);
             // 
             // btn_chooseFolder
             // 
@@ -388,9 +387,19 @@
             // nudExtensionInsertChar
             // 
             this.nudExtensionInsertChar.Location = new System.Drawing.Point(33, 43);
+            this.nudExtensionInsertChar.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudExtensionInsertChar.Name = "nudExtensionInsertChar";
             this.nudExtensionInsertChar.Size = new System.Drawing.Size(58, 23);
             this.nudExtensionInsertChar.TabIndex = 5;
+            this.nudExtensionInsertChar.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblExtensionInsertChar1
             // 
@@ -520,9 +529,19 @@
             // nudExtensionDeleteCount
             // 
             this.nudExtensionDeleteCount.Location = new System.Drawing.Point(62, 90);
+            this.nudExtensionDeleteCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudExtensionDeleteCount.Name = "nudExtensionDeleteCount";
             this.nudExtensionDeleteCount.Size = new System.Drawing.Size(58, 23);
             this.nudExtensionDeleteCount.TabIndex = 8;
+            this.nudExtensionDeleteCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblExtensionDeletePosition2
             // 
@@ -552,9 +571,19 @@
             // nudExtensionDeletePosition
             // 
             this.nudExtensionDeletePosition.Location = new System.Drawing.Point(86, 64);
+            this.nudExtensionDeletePosition.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudExtensionDeletePosition.Name = "nudExtensionDeletePosition";
             this.nudExtensionDeletePosition.Size = new System.Drawing.Size(58, 23);
             this.nudExtensionDeletePosition.TabIndex = 11;
+            this.nudExtensionDeletePosition.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblExtensionDeletePosition1
             // 
@@ -658,14 +687,29 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(235, 17);
             this.label15.TabIndex = 19;
-            this.label15.Text = "注：1、若数字位数为0，命名则为0、1、2";
+            this.label15.Text = "注：1、若数字位数为1，命名则为0、1、2";
             // 
             // nudNumberDigits
             // 
             this.nudNumberDigits.Location = new System.Drawing.Point(71, 136);
+            this.nudNumberDigits.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nudNumberDigits.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudNumberDigits.Name = "nudNumberDigits";
             this.nudNumberDigits.Size = new System.Drawing.Size(58, 23);
             this.nudNumberDigits.TabIndex = 18;
+            this.nudNumberDigits.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label14
             // 
@@ -700,6 +744,11 @@
             // nudInitValue
             // 
             this.nudInitValue.Location = new System.Drawing.Point(71, 94);
+            this.nudInitValue.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
             this.nudInitValue.Name = "nudInitValue";
             this.nudInitValue.Size = new System.Drawing.Size(58, 23);
             this.nudInitValue.TabIndex = 14;
@@ -726,9 +775,19 @@
             // nudNumberCount
             // 
             this.nudNumberCount.Location = new System.Drawing.Point(23, 66);
+            this.nudNumberCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudNumberCount.Name = "nudNumberCount";
             this.nudNumberCount.Size = new System.Drawing.Size(58, 23);
             this.nudNumberCount.TabIndex = 10;
+            this.nudNumberCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudNumberCount.Visible = false;
             // 
             // rdoNumberCustom
@@ -774,10 +833,12 @@
             // rdoNumberStart
             // 
             this.rdoNumberStart.AutoSize = true;
+            this.rdoNumberStart.Checked = true;
             this.rdoNumberStart.Location = new System.Drawing.Point(40, 44);
             this.rdoNumberStart.Name = "rdoNumberStart";
             this.rdoNumberStart.Size = new System.Drawing.Size(50, 21);
             this.rdoNumberStart.TabIndex = 10;
+            this.rdoNumberStart.TabStop = true;
             this.rdoNumberStart.Text = "开头";
             this.rdoNumberStart.UseVisualStyleBackColor = true;
             this.rdoNumberStart.CheckedChanged += new System.EventHandler(this.rdoNumberSettingRadioButton_CheckedChanged);
@@ -909,9 +970,19 @@
             // nudInsertCharPosition
             // 
             this.nudInsertCharPosition.Location = new System.Drawing.Point(30, 39);
+            this.nudInsertCharPosition.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudInsertCharPosition.Name = "nudInsertCharPosition";
             this.nudInsertCharPosition.Size = new System.Drawing.Size(58, 23);
             this.nudInsertCharPosition.TabIndex = 5;
+            this.nudInsertCharPosition.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblInsertCharPosition1
             // 
@@ -1041,9 +1112,19 @@
             // nudDeleteCount
             // 
             this.nudDeleteCount.Location = new System.Drawing.Point(62, 90);
+            this.nudDeleteCount.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudDeleteCount.Name = "nudDeleteCount";
             this.nudDeleteCount.Size = new System.Drawing.Size(58, 23);
             this.nudDeleteCount.TabIndex = 8;
+            this.nudDeleteCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblDeletePosition2
             // 
@@ -1073,9 +1154,19 @@
             // nudDeletePosition
             // 
             this.nudDeletePosition.Location = new System.Drawing.Point(86, 64);
+            this.nudDeletePosition.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.nudDeletePosition.Name = "nudDeletePosition";
             this.nudDeletePosition.Size = new System.Drawing.Size(58, 23);
             this.nudDeletePosition.TabIndex = 11;
+            this.nudDeletePosition.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // lblDeletePositon1
             // 
@@ -1131,8 +1222,6 @@
             this.panel_ToggleCase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_ToggleCase.Controls.Add(this.rdoAllUp);
             this.panel_ToggleCase.Controls.Add(this.rdoAllLow);
-            this.panel_ToggleCase.Controls.Add(this.rdoLowToUp);
-            this.panel_ToggleCase.Controls.Add(this.rdoUpToLow);
             this.panel_ToggleCase.Controls.Add(this.rdoNoToggle);
             this.panel_ToggleCase.Controls.Add(this.label4);
             this.panel_ToggleCase.Location = new System.Drawing.Point(3, 268);
@@ -1143,42 +1232,22 @@
             // rdoAllUp
             // 
             this.rdoAllUp.AutoSize = true;
-            this.rdoAllUp.Location = new System.Drawing.Point(262, 12);
+            this.rdoAllUp.Location = new System.Drawing.Point(200, 12);
             this.rdoAllUp.Name = "rdoAllUp";
-            this.rdoAllUp.Size = new System.Drawing.Size(42, 21);
+            this.rdoAllUp.Size = new System.Drawing.Size(86, 21);
             this.rdoAllUp.TabIndex = 17;
-            this.rdoAllUp.Text = "AA";
+            this.rdoAllUp.Text = "小写转大写";
             this.rdoAllUp.UseVisualStyleBackColor = true;
             // 
             // rdoAllLow
             // 
             this.rdoAllLow.AutoSize = true;
-            this.rdoAllLow.Location = new System.Drawing.Point(216, 12);
+            this.rdoAllLow.Location = new System.Drawing.Point(113, 12);
             this.rdoAllLow.Name = "rdoAllLow";
-            this.rdoAllLow.Size = new System.Drawing.Size(40, 21);
+            this.rdoAllLow.Size = new System.Drawing.Size(86, 21);
             this.rdoAllLow.TabIndex = 16;
-            this.rdoAllLow.Text = "aa";
+            this.rdoAllLow.Text = "大写转小写";
             this.rdoAllLow.UseVisualStyleBackColor = true;
-            // 
-            // rdoLowToUp
-            // 
-            this.rdoLowToUp.AutoSize = true;
-            this.rdoLowToUp.Location = new System.Drawing.Point(169, 12);
-            this.rdoLowToUp.Name = "rdoLowToUp";
-            this.rdoLowToUp.Size = new System.Drawing.Size(41, 21);
-            this.rdoLowToUp.TabIndex = 15;
-            this.rdoLowToUp.Text = "aA";
-            this.rdoLowToUp.UseVisualStyleBackColor = true;
-            // 
-            // rdoUpToLow
-            // 
-            this.rdoUpToLow.AutoSize = true;
-            this.rdoUpToLow.Location = new System.Drawing.Point(122, 12);
-            this.rdoUpToLow.Name = "rdoUpToLow";
-            this.rdoUpToLow.Size = new System.Drawing.Size(41, 21);
-            this.rdoUpToLow.TabIndex = 14;
-            this.rdoUpToLow.Text = "Aa";
-            this.rdoUpToLow.UseVisualStyleBackColor = true;
             // 
             // rdoNoToggle
             // 
@@ -1224,7 +1293,7 @@
             this.Text = "Windows文件批量重命名";
             this.panel_Data.ResumeLayout(false);
             this.panel_Data.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFileData)).EndInit();
             this.panel_optionSetting.ResumeLayout(false);
             this.panel_optionSetting.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -1274,20 +1343,13 @@
         private Button btn_chooseFiles;
         private Button btn_chooseFolder;
         private Button btn_startwork;
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Id;
-        private DataGridViewTextBoxColumn SourceFileName;
-        private DataGridViewTextBoxColumn NewFileName;
-        private DataGridViewTextBoxColumn FilePath;
-        private DataGridViewTextBoxColumn OptionState;
+        private DataGridView dgvFileData;
         private Panel panel_optionSetting;
         private Label label1;
         private Panel panel_ToggleCase;
         private Label label4;
         private RadioButton rdoAllUp;
         private RadioButton rdoAllLow;
-        private RadioButton rdoLowToUp;
-        private RadioButton rdoUpToLow;
         private RadioButton rdoNoToggle;
         private Panel panel1;
         private TabControl tabOptionControl;
@@ -1373,5 +1435,10 @@
         private RadioButton rdoExtensionDeleteByContent;
         private Label label27;
         private CheckBox cbEditFileName;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn SourceFileName;
+        private DataGridViewTextBoxColumn NewFileName;
+        private DataGridViewTextBoxColumn FilePath;
+        private DataGridViewTextBoxColumn OptionState;
     }
 }

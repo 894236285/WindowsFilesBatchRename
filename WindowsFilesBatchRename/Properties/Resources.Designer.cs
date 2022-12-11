@@ -59,5 +59,113 @@ namespace WindowsFilesBatchRename.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   查找类似 请填写要删除的内容！ 的本地化字符串。
+        /// </summary>
+        internal static string DeleteContent {
+            get {
+                return ResourceManager.GetString("DeleteContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 所有文件(*.*)|*.* 的本地化字符串。
+        /// </summary>
+        internal static string DialogFilterText {
+            get {
+                return ResourceManager.GetString("DialogFilterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 文件夹路径不能为空 的本地化字符串。
+        /// </summary>
+        internal static string FilePathIsNotEmpty {
+            get {
+                return ResourceManager.GetString("FilePathIsNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 路径不存在！请重新输入 的本地化字符串。
+        /// </summary>
+        internal static string FilePathIsNotExists {
+            get {
+                return ResourceManager.GetString("FilePathIsNotExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 自定义的插入位置必须大于0 的本地化字符串。
+        /// </summary>
+        internal static string GreaterThanZero {
+            get {
+                return ResourceManager.GetString("GreaterThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请填写要插入的内容！ 的本地化字符串。
+        /// </summary>
+        internal static string NewContent {
+            get {
+                return ResourceManager.GetString("NewContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请填写新的扩展名！ 的本地化字符串。
+        /// </summary>
+        internal static string NewExtension {
+            get {
+                return ResourceManager.GetString("NewExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请填写新的文件名！ 的本地化字符串。
+        /// </summary>
+        internal static string NewFileName {
+            get {
+                return ResourceManager.GetString("NewFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 要删除的字符开始位置以及删除个数都必须大于0！ 的本地化字符串。
+        /// </summary>
+        internal static string PositionAndCountMustGreaterThanZero {
+            get {
+                return ResourceManager.GetString("PositionAndCountMustGreaterThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 请填写要查找的内容！ 的本地化字符串。
+        /// </summary>
+        internal static string SearchContent {
+            get {
+                return ResourceManager.GetString("SearchContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 提示 的本地化字符串。
+        /// </summary>
+        internal static string Tips {
+            get {
+                return ResourceManager.GetString("Tips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 文件总数： 的本地化字符串。
+        /// </summary>
+        internal static string TotalFileCount {
+            get {
+                return ResourceManager.GetString("TotalFileCount", resourceCulture);
+            }
+        }
     }
 }

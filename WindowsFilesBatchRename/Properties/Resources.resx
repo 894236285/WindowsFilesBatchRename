@@ -117,4 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DialogFilterText" xml:space="preserve">
+	  <value>所有文件(*.*)|*.*</value>
+  </data>
+  <data name="TotalFileCount" xml:space="preserve">
+	  <value>文件总数：</value>
+  </data>
+  <data name="FilePathIsNotEmpty" xml:space="preserve">
+	  <value>文件夹路径不能为空</value>
+  </data>
+  <data name="Tips" xml:space="preserve">
+	  <value>提示</value>
+  </data>
+  <data name="FilePathIsNotExists" xml:space="preserve">
+	  <value>路径不存在！请重新输入</value>
+  </data>
+  <data name="NewFileName" xml:space="preserve">
+	  <value>请填写新的文件名！</value>
+  </data>
+  <data name="NewContent" xml:space="preserve">
+	  <value>请填写要插入的内容！</value>
+  </data>
+  <data name="GreaterThanZero" xml:space="preserve">
+	  <value>自定义的插入位置必须大于0</value>
+  </data>
+  <data name="SearchContent" xml:space="preserve">
+	  <value>请填写要查找的内容！</value>
+  </data>
+  <data name="DeleteContent" xml:space="preserve">
+	  <value>请填写要删除的内容！</value>
+  </data>
+  <data name="PositionAndCountMustGreaterThanZero" xml:space="preserve">
+	  <value>要删除的字符开始位置以及删除个数都必须大于0！</value>
+  </data>
+  <data name="NewExtension" xml:space="preserve">
+	  <value>请填写新的扩展名！</value>
+  </data>
 </root>

@@ -1,6 +1,5 @@
-using System;
 using System.Data;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using WindowsFilesBatchRename.Properties;
 
 namespace WindowsFilesBatchRename
 {
@@ -11,7 +10,11 @@ namespace WindowsFilesBatchRename
             InitializeComponent();
 
             //设置不自动新增数据列
-            this.dataGridView1.AutoGenerateColumns = false;
+            this.dgvFileData.AutoGenerateColumns = false;
+            //去掉最后一行空白行
+            this.dgvFileData.AllowUserToAddRows = false;
+            //隐藏头一列空白列
+            this.dgvFileData.RowHeadersVisible = false;
         }
 
         #region 选择文件或文件夹获取文件数据
@@ -27,30 +30,30 @@ namespace WindowsFilesBatchRename
 
             var dialog = new OpenFileDialog();
             dialog.Multiselect = true;//该值确定是否可以选择多个文件
-            dialog.Filter = "所有文件(*.*)|*.*";
+            dialog.Filter = Resources.DialogFilterText;
 
-            if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+            if (dialog.ShowDialog() != DialogResult.OK) return;
 
 
             var dt = new DataTable();
-            initDatatable(dt);
+            InitDataTable(dt);
 
             if (dialog.Multiselect)
             {
                 foreach (var t in dialog.FileNames)
                 {
-                    insertDataTable(dt, t);
+                    InsertDataTable(dt, t);
                 }
             }
             else
             {
-                insertDataTable(dt, dialog.FileName);
+                InsertDataTable(dt, dialog.FileName);
             }
 
 
-            this.dataGridView1.DataSource = dt;
-            this.lbl_filecount.Text = "文件总数：" + dt.Rows.Count;
-            this.dataGridView1.Visible = true;
+            this.dgvFileData.DataSource = dt;
+            this.lbl_filecount.Text = Resources.TotalFileCount + dt.Rows.Count;
+            this.dgvFileData.Visible = true;
         }
 
         /// <summary>
@@ -60,35 +63,35 @@ namespace WindowsFilesBatchRename
         /// <param name="e"></param>
         private void btn_chooseFolder_Click(object sender, EventArgs e)
         {
-            var dialog = new System.Windows.Forms.FolderBrowserDialog();
-            if (dialog.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
+            var dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() != DialogResult.OK) return;
 
             if (string.IsNullOrEmpty(dialog.SelectedPath))
             {
-                MessageBox.Show(this, "文件夹路径不能为空", "提示");
+                MessageBox.Show(this, Resources.FilePathIsNotEmpty, Resources.Tips);
                 return;
             }
             //指定的文件夹目录
             var dir = new DirectoryInfo(dialog.SelectedPath);
             if (dir.Exists == false)
             {
-                MessageBox.Show("路径不存在！请重新输入");
+                MessageBox.Show(Resources.FilePathIsNotExists);
             }
             else
             {
                 var dt = new DataTable();
-                initDatatable(dt);
+                InitDataTable(dt);
                 //检索表示当前目录的文件和子目录
-                FileSystemInfo[] fsInfos = dir.GetFiles();
+                var fsInfos = dir.GetFiles();
                 //遍历检索的文件和子目录
                 foreach (var fsInfo in fsInfos)
                 {
-                    insertDataTable(dt, fsInfo.FullName);
+                    InsertDataTable(dt, fsInfo.FullName);
 
                 }
-                this.dataGridView1.DataSource = dt;
-                this.lbl_filecount.Text = "文件总数：" + dt.Rows.Count;
-                this.dataGridView1.Visible = true;
+                this.dgvFileData.DataSource = dt;
+                this.lbl_filecount.Text = Resources.TotalFileCount + dt.Rows.Count;
+                this.dgvFileData.Visible = true;
             }
         }
 
@@ -96,7 +99,7 @@ namespace WindowsFilesBatchRename
         /// 初始化DataTable，添加列
         /// </summary>
         /// <param name="dt"></param>
-        private void initDatatable(DataTable dt)
+        private static void InitDataTable(DataTable dt)
         {
             dt.Columns.Clear();
             dt.Columns.Add("Id");
@@ -111,7 +114,7 @@ namespace WindowsFilesBatchRename
         /// </summary>
         /// <param name="dt">待操作的DataTable</param>
         /// <param name="filepath">文件全路径</param>
-        private void insertDataTable(DataTable dt, string filepath)
+        private void InsertDataTable(DataTable dt, string filepath)
         {
             var row = dt.NewRow();
             var sourceFIleName = filepath[(filepath.LastIndexOf("\\", StringComparison.Ordinal) + 1)..];
@@ -337,6 +340,253 @@ namespace WindowsFilesBatchRename
 
         #endregion
 
+        private void ModifyFileName(string filepath,string newName)
+        {
+            var file = new FileInfo(filepath);
+
+            if (file.Exists)
+            {
+                File.Move(filepath, newName);
+            }
+        }
+
+        private void btnStartWork_Click(object sender, EventArgs e)
+        {
+            if (this.dgvFileData.DataSource is not DataTable dt || dt.Rows.Count < 1) return;
+
+            var number = -99;
+
+            for (var i = 0; i < dt.Rows.Count; i++)
+            {
+                var row = dt.Rows[i];
+
+                var sourceFileFullName = row["SourceFileName"] + string.Empty;
+
+                var filePath = row["FilePath"] + string.Empty;
+
+                var sourceFileName = sourceFileFullName[..sourceFileFullName.LastIndexOf('.')];
+
+                var fileExtension = sourceFileFullName[(sourceFileFullName.LastIndexOf('.') + 1)..];
+
+                var newFileName = string.Empty;
+
+                var newFileExtension = string.Empty;
+                
+                //需要修改文件名
+                if (this.cbEditFileName.Checked)
+                {
+                    switch (this.tabOptionControl.SelectedIndex)
+                    {
+                        case 0:
+                            var newName = this.txtNewName.Text;
+                            if (string.IsNullOrWhiteSpace(newName))
+                            {
+                                MessageBox.Show(Resources.NewFileName);
+                                return;
+                            }
+                            newFileName = newName;
+                            break;
+                        case 1:
+                            if (string.IsNullOrWhiteSpace(this.txtInsertText.Text))
+                            {
+                                MessageBox.Show(Resources.NewContent);
+                                return;
+                            }
+                            if (this.rdoInsertStart.Checked)
+                            {
+                                newFileName = this.txtInsertText.Text + sourceFileName;
+                            }
+                            else if (this.rdoInsertEnd.Checked)
+                            {
+                                newFileName = sourceFileName + this.txtInsertText.Text;
+                            }
+                            else
+                            {
+                                var position = this.nudInsertCharPosition.Value;
+                                if (position <= 0) 
+                                {
+                                    MessageBox.Show(Resources.GreaterThanZero);
+                                    return;
+                                }
+
+                                newFileName = sourceFileName.Insert((int)position, this.txtInsertText.Text);
+                            }
+                            break;
+                        case 2:
+                            var searchText = this.txtSearchText.Text;
+                            var replaceText = this.txtReplaceText.Text;
+                            if (string.IsNullOrWhiteSpace(searchText))
+                            {
+                                MessageBox.Show(Resources.SearchContent);
+                                return;
+                            }
+
+                            newFileName = sourceFileName.Replace(searchText, replaceText);
+                            break;
+                        case 3:
+                            if (this.rdoDeletebyContent.Checked)
+                            {
+                                var content = this.txtDeleteText.Text;
+                                if (string.IsNullOrWhiteSpace(content))
+                                {
+                                    MessageBox.Show(Resources.DeleteContent);
+                                    return;
+                                }
+
+                                newFileName = sourceFileName.Replace(content, string.Empty);
+                            }
+                            else
+                            {
+                                var deletePosition = this.nudDeletePosition.Value;
+                                var deleteCount = this.nudDeleteCount.Value;
+                                if (deletePosition <= 0 || deleteCount <= 0) 
+                                {
+                                    MessageBox.Show(Resources.PositionAndCountMustGreaterThanZero);
+                                    return;
+                                }
+
+                                newFileName = sourceFileName.Remove((int)deletePosition - 1, (int)deleteCount);
+                            }
+                            break;
+                    }
+                }
+
+                //需要进行编号
+                if (this.cbEnableNumber.Checked)
+                {
+                    //初始数值
+                    var initialValue = this.nudInitValue.Value;
+                    //每次递增
+                    var incremental = this.nudIncremental.Value;
+                    //数字位数
+                    var numberDigits = this.nudNumberDigits.Value;
+
+                    var currentNumber = (number == -99 ? (int)initialValue : number + (int)incremental);
+
+                    if (this.rdoNumberStart.Checked)
+                    {
+                        newFileName = AddPrefix(currentNumber, (int)numberDigits) + newFileName;
+                    }
+                    else if (this.rdoNumberEnd.Checked)
+                    {
+                        newFileName = newFileName + AddPrefix(currentNumber, (int)numberDigits);
+                    }
+                    else
+                    {
+                        var numberCount = this.nudNumberCount.Value;
+                        newFileName = newFileName.Insert((int)numberCount - 1,
+                            AddPrefix(currentNumber, (int)numberDigits));
+                    }
+
+                    number = currentNumber;
+                }
+
+                //需要修改扩展名
+                if (this.cbEnableExtension.Checked)
+                {
+                    switch (this.tabExtensionControl.SelectedIndex)
+                    {
+                        case 0:
+                            if (string.IsNullOrWhiteSpace(this.txtNewExtension.Text))
+                            {
+                                MessageBox.Show(Resources.NewExtension);
+                                return;
+                            }
+                            newFileExtension = this.txtNewExtension.Text;
+                            break;
+                        case 1:
+                            if (string.IsNullOrWhiteSpace(this.txtExtensionInsertText.Text))
+                            {
+                                MessageBox.Show(Resources.NewContent);
+                                return;
+                            }
+                            if (this.rdoExtensionInsertStart.Checked)
+                            {
+                                newFileExtension = this.txtExtensionInsertText.Text + fileExtension;
+                            }
+                            else if (this.rdoExtensionInsertEnd.Checked)
+                            {
+                                newFileExtension = fileExtension + this.txtExtensionInsertText.Text;
+                            }
+                            else
+                            {
+                                var position = this.nudExtensionInsertChar.Value;
+                                if (position <= 0)
+                                {
+                                    MessageBox.Show(Resources.GreaterThanZero);
+                                    return;
+                                }
+
+                                newFileExtension = sourceFileName.Insert((int)position, this.txtExtensionInsertText.Text);
+                            }
+                            break;
+                        case 2:
+                            var searchText = this.txtExtensionSearchText.Text;
+                            var replaceText = this.txtExtensionReplaceText.Text;
+                            if (string.IsNullOrWhiteSpace(searchText))
+                            {
+                                MessageBox.Show(Resources.SearchContent);
+                                return;
+                            }
+
+                            newFileExtension = fileExtension.Replace(searchText, replaceText);
+                            break;
+                        case 3:
+                            if (this.rdoExtensionDeleteByContent.Checked)
+                            {
+                                var content = this.txtExtensionDeleteContent.Text;
+                                if (string.IsNullOrWhiteSpace(content))
+                                {
+                                    MessageBox.Show(Resources.DeleteContent);
+                                    return;
+                                }
+
+                                newFileExtension = fileExtension.Replace(content, string.Empty);
+                            }
+                            else
+                            {
+                                var deletePosition = this.nudExtensionDeletePosition.Value;
+                                var deleteCount = this.nudExtensionDeleteCount.Value;
+                                if (deletePosition <= 0 || deleteCount <= 0)
+                                {
+                                    MessageBox.Show(Resources.PositionAndCountMustGreaterThanZero);
+                                    return;
+                                }
+                                newFileExtension = fileExtension.Remove((int)deletePosition - 1, (int)deleteCount);
+                            }
+                            break;
+                    }
+                }
+
+                var newFileFullName = (string.IsNullOrWhiteSpace(newFileName) ? sourceFileName : newFileName) + "." +
+                                  (string.IsNullOrWhiteSpace(newFileExtension) ? fileExtension : newFileExtension);
+
+                if (this.rdoAllLow.Checked)
+                    newFileFullName = newFileFullName.ToLower();
+                else if (rdoAllUp.Checked)
+                    newFileFullName = newFileFullName.ToUpper();
+                
+
+                row["NewFileName"] = newFileFullName;
+
+                if (filePath == string.Empty)
+                {
+                    ModifyFileName(filePath, newFileFullName);
+                }
+            }
+
+            this.dgvFileData.DataSource = dt;
+        }
+        
+        private static string AddPrefix(int currentNumber,int numberDigits)
+        {
+            var currentNumberDigits = currentNumber.ToString().Length;
+            if (numberDigits == 1 || numberDigits - currentNumberDigits <= 0) return currentNumber + string.Empty;
+            
+            return new string('0', numberDigits - currentNumberDigits) + currentNumber;
+            
+        }
+        
 
     }
 }
