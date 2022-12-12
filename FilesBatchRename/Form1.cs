@@ -1,7 +1,11 @@
+ï»¿using FilesBatchRename.Properties;
+using System;
 using System.Data;
-using WindowsFilesBatchRename.Properties;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
-namespace WindowsFilesBatchRename
+namespace FilesBatchRename
 {
     public partial class Form1 : Form
     {
@@ -9,19 +13,19 @@ namespace WindowsFilesBatchRename
         {
             InitializeComponent();
 
-            //ÉèÖÃ²»×Ô¶¯ĞÂÔöÊı¾İÁĞ
+            //è®¾ç½®ä¸è‡ªåŠ¨æ–°å¢æ•°æ®åˆ—
             this.dgvFileData.AutoGenerateColumns = false;
-            //È¥µô×îºóÒ»ĞĞ¿Õ°×ĞĞ
+            //å»æ‰æœ€åä¸€è¡Œç©ºç™½è¡Œ
             this.dgvFileData.AllowUserToAddRows = false;
-            //Òş²ØÍ·Ò»ÁĞ¿Õ°×ÁĞ
+            //éšè—å¤´ä¸€åˆ—ç©ºç™½åˆ—
             this.dgvFileData.RowHeadersVisible = false;
         }
 
-        #region Ñ¡ÔñÎÄ¼ş»òÎÄ¼ş¼Ğ»ñÈ¡ÎÄ¼şÊı¾İ
+        #region é€‰æ‹©æ–‡ä»¶æˆ–æ–‡ä»¶å¤¹è·å–æ–‡ä»¶æ•°æ®
 
 
         /// <summary>
-        /// Ñ¡ÔñÎÄ¼ş
+        /// é€‰æ‹©æ–‡ä»¶
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -29,7 +33,7 @@ namespace WindowsFilesBatchRename
         {
 
             var dialog = new OpenFileDialog();
-            dialog.Multiselect = true;//¸ÃÖµÈ·¶¨ÊÇ·ñ¿ÉÒÔÑ¡Ôñ¶à¸öÎÄ¼ş
+            dialog.Multiselect = true;//è¯¥å€¼ç¡®å®šæ˜¯å¦å¯ä»¥é€‰æ‹©å¤šä¸ªæ–‡ä»¶
             dialog.Filter = Resources.DialogFilterText;
 
             if (dialog.ShowDialog() != DialogResult.OK) return;
@@ -57,7 +61,7 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// Ñ¡ÔñÎÄ¼ş¼Ğ
+        /// é€‰æ‹©æ–‡ä»¶å¤¹
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -71,7 +75,7 @@ namespace WindowsFilesBatchRename
                 MessageBox.Show(this, Resources.FilePathIsNotEmpty, Resources.Tips);
                 return;
             }
-            //Ö¸¶¨µÄÎÄ¼ş¼ĞÄ¿Â¼
+            //æŒ‡å®šçš„æ–‡ä»¶å¤¹ç›®å½•
             var dir = new DirectoryInfo(dialog.SelectedPath);
             if (dir.Exists == false)
             {
@@ -81,9 +85,9 @@ namespace WindowsFilesBatchRename
             {
                 var dt = new DataTable();
                 InitDataTable(dt);
-                //¼ìË÷±íÊ¾µ±Ç°Ä¿Â¼µÄÎÄ¼şºÍ×ÓÄ¿Â¼
+                //æ£€ç´¢è¡¨ç¤ºå½“å‰ç›®å½•çš„æ–‡ä»¶å’Œå­ç›®å½•
                 var fsInfos = dir.GetFiles();
-                //±éÀú¼ìË÷µÄÎÄ¼şºÍ×ÓÄ¿Â¼
+                //éå†æ£€ç´¢çš„æ–‡ä»¶å’Œå­ç›®å½•
                 foreach (var fsInfo in fsInfos)
                 {
                     InsertDataTable(dt, fsInfo.FullName);
@@ -96,7 +100,7 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// ³õÊ¼»¯DataTable£¬Ìí¼ÓÁĞ
+        /// åˆå§‹åŒ–DataTableï¼Œæ·»åŠ åˆ—
         /// </summary>
         /// <param name="dt"></param>
         private static void InitDataTable(DataTable dt)
@@ -110,29 +114,29 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// ÍùDataTableÌí¼ÓÒ»ĞĞÊı¾İ
+        /// å¾€DataTableæ·»åŠ ä¸€è¡Œæ•°æ®
         /// </summary>
-        /// <param name="dt">´ı²Ù×÷µÄDataTable</param>
-        /// <param name="filepath">ÎÄ¼şÈ«Â·¾¶</param>
+        /// <param name="dt">å¾…æ“ä½œçš„DataTable</param>
+        /// <param name="filepath">æ–‡ä»¶å…¨è·¯å¾„</param>
         private static void InsertDataTable(DataTable dt, string filepath)
         {
             var row = dt.NewRow();
-            var sourceFIleName = filepath[(filepath.LastIndexOf("\\", StringComparison.Ordinal) + 1)..];
+            var sourceFIleName = filepath.Substring(filepath.LastIndexOf("\\", StringComparison.Ordinal) + 1);
             row["Id"] = dt.Rows.Count + 1;
             row["SourceFileName"] = sourceFIleName;
             row["NewFileName"] = string.Empty;
             row["FilePath"] = filepath;
-            row["OptionState"] = "´ı²Ù×÷";
+            row["OptionState"] = "å¾…æ“ä½œ";
             dt.Rows.Add(row);
         }
 
 
         #endregion
 
-        #region Ò³ÃæÏÔÊ¾Òş²ØÂß¼­
+        #region é¡µé¢æ˜¾ç¤ºéšè—é€»è¾‘
 
         /// <summary>
-        /// ĞŞ¸ÄÎÄ¼şÃûÊ±tabÑ¡Ïî¿¨±ä¸üÊÂ¼ş
+        /// ä¿®æ”¹æ–‡ä»¶åæ—¶tabé€‰é¡¹å¡å˜æ›´äº‹ä»¶
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -141,13 +145,13 @@ namespace WindowsFilesBatchRename
             switch (this.tabOptionControl.SelectedIndex)
             {
                 case 0:
-                //µ±Ñ¡Ïî±ä¸üÎª¡°²åÈë¡±²Ù×÷Ê±£¬Ä¬ÈÏÑ¡ÖĞ¡°¿ªÍ·¡±,²¢Ê¹¡°±àºÅÉèÖÃ¡±Ãæ°åÎª¿É¼û
+                //å½“é€‰é¡¹å˜æ›´ä¸ºâ€œæ’å…¥â€æ“ä½œæ—¶ï¼Œé»˜è®¤é€‰ä¸­â€œå¼€å¤´â€,å¹¶ä½¿â€œç¼–å·è®¾ç½®â€é¢æ¿ä¸ºå¯è§
                 case 1:
                     this.panelNumberSetting.Visible = true;
                     this.panelExtensionSetting.Location = new Point(3, 557);
                     this.rdoInsertStart.Checked = true;
                     break;
-                //Ñ¡Ïîµ±±ä¸üÎª¡°É¾³ı¡±²Ù×÷Ê±£¬Ä¬ÈÏÑ¡ÖĞ¡°Ö¸¶¨ÄÚÈİ¡±,²¢Ê¹¡°±àºÅÉèÖÃ¡±Ãæ°åÎª²»¿É¼û
+                //é€‰é¡¹å½“å˜æ›´ä¸ºâ€œåˆ é™¤â€æ“ä½œæ—¶ï¼Œé»˜è®¤é€‰ä¸­â€œæŒ‡å®šå†…å®¹â€,å¹¶ä½¿â€œç¼–å·è®¾ç½®â€é¢æ¿ä¸ºä¸å¯è§
                 case 2:
                 case 3:
                     this.panelNumberSetting.Visible = false;
@@ -161,7 +165,7 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// ĞŞ¸ÄÎÄ¼şÃûÊ±²åÈë²Ù×÷µÄµ¥Ñ¡°´Å¥±ä¸üÊÂ¼ş
+        /// ä¿®æ”¹æ–‡ä»¶åæ—¶æ’å…¥æ“ä½œçš„å•é€‰æŒ‰é’®å˜æ›´äº‹ä»¶
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -195,7 +199,7 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// ĞŞ¸ÄÎÄ¼şÃûÊ±É¾³ı²Ù×÷µÄµ¥Ñ¡°´Å¥±ä¸üÊÂ¼ş
+        /// ä¿®æ”¹æ–‡ä»¶åæ—¶åˆ é™¤æ“ä½œçš„å•é€‰æŒ‰é’®å˜æ›´äº‹ä»¶
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -237,7 +241,7 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// ÉèÖÃ±àºÅÊ±µÄµ¥Ñ¡°´Å¥±ä¸üÊÂ¼ş
+        /// è®¾ç½®ç¼–å·æ—¶çš„å•é€‰æŒ‰é’®å˜æ›´äº‹ä»¶
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -259,7 +263,7 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// ĞŞ¸ÄÀ©Õ¹ÃûÊ±tabÑ¡Ïî¿¨±ä¸üÊÂ¼ş
+        /// ä¿®æ”¹æ‰©å±•åæ—¶tabé€‰é¡¹å¡å˜æ›´äº‹ä»¶
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -278,7 +282,7 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// ĞŞ¸ÄÀ©Õ¹ÃûÊ±²åÈë²Ù×÷µÄµ¥Ñ¡°´Å¥±ä¸üÊÂ¼ş
+        /// ä¿®æ”¹æ‰©å±•åæ—¶æ’å…¥æ“ä½œçš„å•é€‰æŒ‰é’®å˜æ›´äº‹ä»¶
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -312,7 +316,7 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// ĞŞ¸ÄÀ©Õ¹ÃûÊ±É¾³ı²Ù×÷µÄµ¥Ñ¡°´Å¥±ä¸üÊÂ¼ş
+        /// ä¿®æ”¹æ‰©å±•åæ—¶åˆ é™¤æ“ä½œçš„å•é€‰æŒ‰é’®å˜æ›´äº‹ä»¶
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -355,7 +359,7 @@ namespace WindowsFilesBatchRename
 
         #endregion
 
-        #region ¿ªÊ¼ÅúÁ¿ÖØÃüÃû
+        #region å¼€å§‹æ‰¹é‡é‡å‘½å
         private static bool ModifyFileName(string filepath, string newName)
         {
             var file = new FileInfo(filepath);
@@ -364,7 +368,8 @@ namespace WindowsFilesBatchRename
 
             try
             {
-                File.Move(filepath, filepath[..(filepath.LastIndexOf("\\", StringComparison.Ordinal) + 1)] + newName);
+                File.Move(filepath,
+                    filepath.Substring(0, filepath.LastIndexOf("\\", StringComparison.Ordinal) + 1) + newName);
                 return true;
             }
             catch
@@ -374,13 +379,13 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// ¿ªÊ¼ÅúÁ¿ÖØÃüÃû
+        /// å¼€å§‹æ‰¹é‡é‡å‘½å
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void BtnStartWork_Click(object sender, EventArgs e)
         {
-            if (this.dgvFileData.DataSource is not DataTable dt || dt.Rows.Count < 1) return;
+            if (!(this.dgvFileData.DataSource is DataTable dt) || dt.Rows.Count < 1) return;
             for (var i = 0; i < dt.Rows.Count; i++)
             {
                 var row = dt.Rows[i];
@@ -395,11 +400,11 @@ namespace WindowsFilesBatchRename
 
                 if (ModifyFileName(filePath, newFileName))
                 {
-                    row["OptionState"] = "²Ù×÷³É¹¦";
+                    row["OptionState"] = "æ“ä½œæˆåŠŸ";
                 }
                 else
                 {
-                    row["OptionState"] = "²Ù×÷Ê§°Ü";
+                    row["OptionState"] = "æ“ä½œå¤±è´¥";
                 }
             }
             this.dgvFileData.DataSource = dt;
@@ -407,15 +412,15 @@ namespace WindowsFilesBatchRename
 
         #endregion
 
-        #region ÖØÃüÃûÔ¤ÀÀ
+        #region é‡å‘½åé¢„è§ˆ
         /// <summary>
-        /// ĞŞ¸ÄÎÄ¼şÃû³Æ£¬Ìí¼ÓÖÁDataTableÖĞÒÔ¹©Ô¤ÀÀ
+        /// ä¿®æ”¹æ–‡ä»¶åç§°ï¼Œæ·»åŠ è‡³DataTableä¸­ä»¥ä¾›é¢„è§ˆ
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SetNewFileNameToDataTable(object sender, EventArgs e)
         {
-            if (this.dgvFileData.DataSource is not DataTable dt || dt.Rows.Count < 1) return;
+            if (!(this.dgvFileData.DataSource is DataTable dt) || dt.Rows.Count < 1) return;
             if (!this.cbEditFileName.Checked && !this.cbEnableNumber.Checked && !this.cbEnableExtension.Checked && this.rdoNoToggle.Checked) return;
 
             var number = -99;
@@ -428,15 +433,15 @@ namespace WindowsFilesBatchRename
 
                     var sourceFileFullName = row["SourceFileName"] + string.Empty;
 
-                    var sourceFileName = sourceFileFullName[..sourceFileFullName.LastIndexOf('.')];
+                    var sourceFileName = sourceFileFullName.Substring(0, sourceFileFullName.LastIndexOf('.'));
 
-                    var fileExtension = sourceFileFullName[(sourceFileFullName.LastIndexOf('.') + 1)..];
+                    var fileExtension = sourceFileFullName.Substring(sourceFileFullName.LastIndexOf('.') + 1);
 
                     var newFileName = string.Empty;
 
                     var newFileExtension = string.Empty;
 
-                    //ĞèÒªĞŞ¸ÄÎÄ¼şÃû
+                    //éœ€è¦ä¿®æ”¹æ–‡ä»¶å
                     if (this.cbEditFileName.Checked)
                     {
                         switch (this.tabOptionControl.SelectedIndex)
@@ -515,14 +520,14 @@ namespace WindowsFilesBatchRename
                         }
                     }
 
-                    //ĞèÒª½øĞĞ±àºÅ
+                    //éœ€è¦è¿›è¡Œç¼–å·
                     if (this.cbEnableNumber.Checked)
                     {
-                        //³õÊ¼ÊıÖµ
+                        //åˆå§‹æ•°å€¼
                         var initialValue = this.nudInitValue.Value;
-                        //Ã¿´ÎµİÔö
+                        //æ¯æ¬¡é€’å¢
                         var incremental = this.nudIncremental.Value;
-                        //Êı×ÖÎ»Êı
+                        //æ•°å­—ä½æ•°
                         var numberDigits = this.nudNumberDigits.Value;
 
                         var currentNumber = (number == -99 ? (int)initialValue : number + (int)incremental);
@@ -545,7 +550,7 @@ namespace WindowsFilesBatchRename
                         number = currentNumber;
                     }
 
-                    //ĞèÒªĞŞ¸ÄÀ©Õ¹Ãû
+                    //éœ€è¦ä¿®æ”¹æ‰©å±•å
                     if (this.cbEnableExtension.Checked)
                     {
                         switch (this.tabExtensionControl.SelectedIndex)
@@ -644,7 +649,7 @@ namespace WindowsFilesBatchRename
         }
 
         /// <summary>
-        /// Ìí¼Ó±àºÅµÄÇ°×º
+        /// æ·»åŠ ç¼–å·çš„å‰ç¼€
         /// </summary>
         /// <param name="currentNumber"></param>
         /// <param name="numberDigits"></param>
@@ -659,6 +664,5 @@ namespace WindowsFilesBatchRename
         }
 
         #endregion
-
     }
 }

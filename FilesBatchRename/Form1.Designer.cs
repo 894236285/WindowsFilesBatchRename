@@ -1,16 +1,18 @@
-﻿namespace WindowsFilesBatchRename
+﻿using System.Windows.Forms;
+
+namespace FilesBatchRename
 {
     partial class Form1
     {
         /// <summary>
-        ///  Required designer variable.
+        /// 必需的设计器变量。
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// 清理所有正在使用的资源。
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,11 +22,11 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Windows 窗体设计器生成的代码
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// 设计器支持所需的方法 - 不要修改
+        /// 使用代码编辑器修改此方法的内容。
         /// </summary>
         private void InitializeComponent()
         {
@@ -168,7 +170,9 @@
             this.panel_Data.Controls.Add(this.btn_chooseFolder);
             this.panel_Data.Controls.Add(this.btn_chooseFiles);
             this.panel_Data.Controls.Add(this.lbl_filecount);
-            this.panel_Data.Location = new System.Drawing.Point(12, 12);
+            this.panel_Data.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.panel_Data.Location = new System.Drawing.Point(12, 11);
+            this.panel_Data.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel_Data.Name = "panel_Data";
             this.panel_Data.Size = new System.Drawing.Size(1126, 778);
             this.panel_Data.TabIndex = 0;
@@ -183,6 +187,7 @@
             this.FilePath,
             this.OptionState});
             this.dgvFileData.Location = new System.Drawing.Point(13, 55);
+            this.dgvFileData.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvFileData.Name = "dgvFileData";
             this.dgvFileData.RowTemplate.Height = 25;
             this.dgvFileData.Size = new System.Drawing.Size(1104, 718);
@@ -235,8 +240,9 @@
             // 
             // btn_startwork
             // 
-            this.btn_startwork.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btn_startwork.Location = new System.Drawing.Point(1019, 8);
+            this.btn_startwork.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.btn_startwork.Location = new System.Drawing.Point(1011, 8);
+            this.btn_startwork.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btn_startwork.Name = "btn_startwork";
             this.btn_startwork.Size = new System.Drawing.Size(98, 41);
             this.btn_startwork.TabIndex = 3;
@@ -246,8 +252,9 @@
             // 
             // btn_chooseFolder
             // 
-            this.btn_chooseFolder.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_chooseFolder.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
             this.btn_chooseFolder.Location = new System.Drawing.Point(908, 8);
+            this.btn_chooseFolder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btn_chooseFolder.Name = "btn_chooseFolder";
             this.btn_chooseFolder.Size = new System.Drawing.Size(98, 41);
             this.btn_chooseFolder.TabIndex = 2;
@@ -257,8 +264,9 @@
             // 
             // btn_chooseFiles
             // 
-            this.btn_chooseFiles.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btn_chooseFiles.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
             this.btn_chooseFiles.Location = new System.Drawing.Point(811, 8);
+            this.btn_chooseFiles.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btn_chooseFiles.Name = "btn_chooseFiles";
             this.btn_chooseFiles.Size = new System.Drawing.Size(91, 41);
             this.btn_chooseFiles.TabIndex = 1;
@@ -269,8 +277,9 @@
             // lbl_filecount
             // 
             this.lbl_filecount.AutoSize = true;
-            this.lbl_filecount.Font = new System.Drawing.Font("Microsoft YaHei UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbl_filecount.Font = new System.Drawing.Font("Microsoft YaHei UI", 15F);
             this.lbl_filecount.Location = new System.Drawing.Point(13, 14);
+            this.lbl_filecount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_filecount.Name = "lbl_filecount";
             this.lbl_filecount.Size = new System.Drawing.Size(124, 27);
             this.lbl_filecount.TabIndex = 0;
@@ -284,7 +293,8 @@
             this.panel_optionSetting.Controls.Add(this.panel1);
             this.panel_optionSetting.Controls.Add(this.panel_ToggleCase);
             this.panel_optionSetting.Controls.Add(this.label1);
-            this.panel_optionSetting.Location = new System.Drawing.Point(1144, 12);
+            this.panel_optionSetting.Location = new System.Drawing.Point(1144, 11);
+            this.panel_optionSetting.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel_optionSetting.Name = "panel_optionSetting";
             this.panel_optionSetting.Size = new System.Drawing.Size(343, 778);
             this.panel_optionSetting.TabIndex = 1;
@@ -294,7 +304,8 @@
             this.panelExtensionSetting.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelExtensionSetting.Controls.Add(this.tabExtensionControl);
             this.panelExtensionSetting.Controls.Add(this.cbEnableExtension);
-            this.panelExtensionSetting.Location = new System.Drawing.Point(3, 557);
+            this.panelExtensionSetting.Location = new System.Drawing.Point(4, 557);
+            this.panelExtensionSetting.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelExtensionSetting.Name = "panelExtensionSetting";
             this.panelExtensionSetting.Size = new System.Drawing.Size(331, 216);
             this.panelExtensionSetting.TabIndex = 10;
@@ -305,7 +316,8 @@
             this.tabExtensionControl.Controls.Add(this.tabExtensionInsert);
             this.tabExtensionControl.Controls.Add(this.tabExtensionReplace);
             this.tabExtensionControl.Controls.Add(this.tabExtensionDelete);
-            this.tabExtensionControl.Location = new System.Drawing.Point(3, 42);
+            this.tabExtensionControl.Location = new System.Drawing.Point(4, 42);
+            this.tabExtensionControl.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabExtensionControl.Name = "tabExtensionControl";
             this.tabExtensionControl.SelectedIndex = 0;
             this.tabExtensionControl.Size = new System.Drawing.Size(321, 149);
@@ -317,8 +329,9 @@
             this.tabExtensionCustom.Controls.Add(this.txtNewExtension);
             this.tabExtensionCustom.Controls.Add(this.label11);
             this.tabExtensionCustom.Location = new System.Drawing.Point(4, 26);
+            this.tabExtensionCustom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabExtensionCustom.Name = "tabExtensionCustom";
-            this.tabExtensionCustom.Padding = new System.Windows.Forms.Padding(3);
+            this.tabExtensionCustom.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabExtensionCustom.Size = new System.Drawing.Size(313, 119);
             this.tabExtensionCustom.TabIndex = 0;
             this.tabExtensionCustom.Text = "自定义";
@@ -327,6 +340,7 @@
             // txtNewExtension
             // 
             this.txtNewExtension.Location = new System.Drawing.Point(65, 23);
+            this.txtNewExtension.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtNewExtension.Name = "txtNewExtension";
             this.txtNewExtension.Size = new System.Drawing.Size(230, 23);
             this.txtNewExtension.TabIndex = 1;
@@ -335,7 +349,8 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 29);
+            this.label11.Location = new System.Drawing.Point(4, 28);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(56, 17);
             this.label11.TabIndex = 0;
@@ -352,10 +367,11 @@
             this.tabExtensionInsert.Controls.Add(this.rdoExtensionInsertEnd);
             this.tabExtensionInsert.Controls.Add(this.rdoExtensionInsertStart);
             this.tabExtensionInsert.Controls.Add(this.label19);
-            this.tabExtensionInsert.Location = new System.Drawing.Point(4, 26);
+            this.tabExtensionInsert.Location = new System.Drawing.Point(4, 22);
+            this.tabExtensionInsert.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabExtensionInsert.Name = "tabExtensionInsert";
-            this.tabExtensionInsert.Padding = new System.Windows.Forms.Padding(3);
-            this.tabExtensionInsert.Size = new System.Drawing.Size(313, 119);
+            this.tabExtensionInsert.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabExtensionInsert.Size = new System.Drawing.Size(313, 123);
             this.tabExtensionInsert.TabIndex = 1;
             this.tabExtensionInsert.Text = "插入";
             this.tabExtensionInsert.UseVisualStyleBackColor = true;
@@ -363,6 +379,7 @@
             // txtExtensionInsertText
             // 
             this.txtExtensionInsertText.Location = new System.Drawing.Point(69, 72);
+            this.txtExtensionInsertText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtExtensionInsertText.Name = "txtExtensionInsertText";
             this.txtExtensionInsertText.Size = new System.Drawing.Size(153, 23);
             this.txtExtensionInsertText.TabIndex = 8;
@@ -372,6 +389,7 @@
             // 
             this.lblExtensionInsertText.AutoSize = true;
             this.lblExtensionInsertText.Location = new System.Drawing.Point(12, 75);
+            this.lblExtensionInsertText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExtensionInsertText.Name = "lblExtensionInsertText";
             this.lblExtensionInsertText.Size = new System.Drawing.Size(56, 17);
             this.lblExtensionInsertText.TabIndex = 7;
@@ -381,6 +399,7 @@
             // 
             this.lblExtensionInsertChar2.AutoSize = true;
             this.lblExtensionInsertChar2.Location = new System.Drawing.Point(94, 45);
+            this.lblExtensionInsertChar2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExtensionInsertChar2.Name = "lblExtensionInsertChar2";
             this.lblExtensionInsertChar2.Size = new System.Drawing.Size(56, 17);
             this.lblExtensionInsertChar2.TabIndex = 6;
@@ -388,7 +407,8 @@
             // 
             // nudExtensionInsertChar
             // 
-            this.nudExtensionInsertChar.Location = new System.Drawing.Point(33, 43);
+            this.nudExtensionInsertChar.Location = new System.Drawing.Point(33, 42);
+            this.nudExtensionInsertChar.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudExtensionInsertChar.Minimum = new decimal(new int[] {
             1,
             0,
@@ -408,6 +428,7 @@
             // 
             this.lblExtensionInsertChar1.AutoSize = true;
             this.lblExtensionInsertChar1.Location = new System.Drawing.Point(12, 45);
+            this.lblExtensionInsertChar1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExtensionInsertChar1.Name = "lblExtensionInsertChar1";
             this.lblExtensionInsertChar1.Size = new System.Drawing.Size(20, 17);
             this.lblExtensionInsertChar1.TabIndex = 4;
@@ -417,6 +438,7 @@
             // 
             this.rdoExtensionInserCustom.AutoSize = true;
             this.rdoExtensionInserCustom.Location = new System.Drawing.Point(162, 21);
+            this.rdoExtensionInserCustom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoExtensionInserCustom.Name = "rdoExtensionInserCustom";
             this.rdoExtensionInserCustom.Size = new System.Drawing.Size(62, 21);
             this.rdoExtensionInserCustom.TabIndex = 3;
@@ -428,6 +450,7 @@
             // 
             this.rdoExtensionInsertEnd.AutoSize = true;
             this.rdoExtensionInsertEnd.Location = new System.Drawing.Point(106, 21);
+            this.rdoExtensionInsertEnd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoExtensionInsertEnd.Name = "rdoExtensionInsertEnd";
             this.rdoExtensionInsertEnd.Size = new System.Drawing.Size(50, 21);
             this.rdoExtensionInsertEnd.TabIndex = 2;
@@ -439,6 +462,7 @@
             // 
             this.rdoExtensionInsertStart.AutoSize = true;
             this.rdoExtensionInsertStart.Location = new System.Drawing.Point(50, 21);
+            this.rdoExtensionInsertStart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoExtensionInsertStart.Name = "rdoExtensionInsertStart";
             this.rdoExtensionInsertStart.Size = new System.Drawing.Size(50, 21);
             this.rdoExtensionInsertStart.TabIndex = 1;
@@ -450,6 +474,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Location = new System.Drawing.Point(12, 21);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(32, 17);
             this.label19.TabIndex = 0;
@@ -461,9 +486,10 @@
             this.tabExtensionReplace.Controls.Add(this.label20);
             this.tabExtensionReplace.Controls.Add(this.txtExtensionSearchText);
             this.tabExtensionReplace.Controls.Add(this.label21);
-            this.tabExtensionReplace.Location = new System.Drawing.Point(4, 26);
+            this.tabExtensionReplace.Location = new System.Drawing.Point(4, 22);
+            this.tabExtensionReplace.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabExtensionReplace.Name = "tabExtensionReplace";
-            this.tabExtensionReplace.Size = new System.Drawing.Size(313, 119);
+            this.tabExtensionReplace.Size = new System.Drawing.Size(313, 123);
             this.tabExtensionReplace.TabIndex = 2;
             this.tabExtensionReplace.Text = "替换";
             this.tabExtensionReplace.UseVisualStyleBackColor = true;
@@ -471,6 +497,7 @@
             // txtExtensionReplaceText
             // 
             this.txtExtensionReplaceText.Location = new System.Drawing.Point(75, 58);
+            this.txtExtensionReplaceText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtExtensionReplaceText.Name = "txtExtensionReplaceText";
             this.txtExtensionReplaceText.Size = new System.Drawing.Size(220, 23);
             this.txtExtensionReplaceText.TabIndex = 3;
@@ -480,6 +507,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Location = new System.Drawing.Point(13, 61);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(56, 17);
             this.label20.TabIndex = 2;
@@ -488,6 +516,7 @@
             // txtExtensionSearchText
             // 
             this.txtExtensionSearchText.Location = new System.Drawing.Point(75, 18);
+            this.txtExtensionSearchText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtExtensionSearchText.Name = "txtExtensionSearchText";
             this.txtExtensionSearchText.Size = new System.Drawing.Size(220, 23);
             this.txtExtensionSearchText.TabIndex = 1;
@@ -497,6 +526,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(13, 21);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(56, 17);
             this.label21.TabIndex = 0;
@@ -515,9 +545,10 @@
             this.tabExtensionDelete.Controls.Add(this.lblExtensionDeleteContent1);
             this.tabExtensionDelete.Controls.Add(this.rdoExtensionDeleteByContent);
             this.tabExtensionDelete.Controls.Add(this.label27);
-            this.tabExtensionDelete.Location = new System.Drawing.Point(4, 26);
+            this.tabExtensionDelete.Location = new System.Drawing.Point(4, 22);
+            this.tabExtensionDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabExtensionDelete.Name = "tabExtensionDelete";
-            this.tabExtensionDelete.Size = new System.Drawing.Size(313, 119);
+            this.tabExtensionDelete.Size = new System.Drawing.Size(313, 123);
             this.tabExtensionDelete.TabIndex = 3;
             this.tabExtensionDelete.Text = "删除";
             this.tabExtensionDelete.UseVisualStyleBackColor = true;
@@ -526,6 +557,7 @@
             // 
             this.lblExtensionDeleteCount2.AutoSize = true;
             this.lblExtensionDeleteCount2.Location = new System.Drawing.Point(126, 92);
+            this.lblExtensionDeleteCount2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExtensionDeleteCount2.Name = "lblExtensionDeleteCount2";
             this.lblExtensionDeleteCount2.Size = new System.Drawing.Size(44, 17);
             this.lblExtensionDeleteCount2.TabIndex = 9;
@@ -533,7 +565,8 @@
             // 
             // nudExtensionDeleteCount
             // 
-            this.nudExtensionDeleteCount.Location = new System.Drawing.Point(62, 90);
+            this.nudExtensionDeleteCount.Location = new System.Drawing.Point(62, 91);
+            this.nudExtensionDeleteCount.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudExtensionDeleteCount.Minimum = new decimal(new int[] {
             1,
             0,
@@ -552,7 +585,8 @@
             // lblExtensionDeletePosition2
             // 
             this.lblExtensionDeletePosition2.AutoSize = true;
-            this.lblExtensionDeletePosition2.Location = new System.Drawing.Point(150, 66);
+            this.lblExtensionDeletePosition2.Location = new System.Drawing.Point(150, 67);
+            this.lblExtensionDeletePosition2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExtensionDeletePosition2.Name = "lblExtensionDeletePosition2";
             this.lblExtensionDeletePosition2.Size = new System.Drawing.Size(92, 17);
             this.lblExtensionDeletePosition2.TabIndex = 12;
@@ -562,6 +596,7 @@
             // 
             this.lblExtensionDeleteCount1.AutoSize = true;
             this.lblExtensionDeleteCount1.Location = new System.Drawing.Point(12, 92);
+            this.lblExtensionDeleteCount1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExtensionDeleteCount1.Name = "lblExtensionDeleteCount1";
             this.lblExtensionDeleteCount1.Size = new System.Drawing.Size(44, 17);
             this.lblExtensionDeleteCount1.TabIndex = 7;
@@ -570,6 +605,7 @@
             // txtExtensionDeleteContent
             // 
             this.txtExtensionDeleteContent.Location = new System.Drawing.Point(74, 37);
+            this.txtExtensionDeleteContent.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtExtensionDeleteContent.Name = "txtExtensionDeleteContent";
             this.txtExtensionDeleteContent.Size = new System.Drawing.Size(168, 23);
             this.txtExtensionDeleteContent.TabIndex = 5;
@@ -578,6 +614,7 @@
             // nudExtensionDeletePosition
             // 
             this.nudExtensionDeletePosition.Location = new System.Drawing.Point(86, 64);
+            this.nudExtensionDeletePosition.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudExtensionDeletePosition.Minimum = new decimal(new int[] {
             1,
             0,
@@ -596,7 +633,8 @@
             // lblExtensionDeletePosition1
             // 
             this.lblExtensionDeletePosition1.AutoSize = true;
-            this.lblExtensionDeletePosition1.Location = new System.Drawing.Point(12, 66);
+            this.lblExtensionDeletePosition1.Location = new System.Drawing.Point(12, 67);
+            this.lblExtensionDeletePosition1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExtensionDeletePosition1.Name = "lblExtensionDeletePosition1";
             this.lblExtensionDeletePosition1.Size = new System.Drawing.Size(68, 17);
             this.lblExtensionDeletePosition1.TabIndex = 10;
@@ -606,6 +644,7 @@
             // 
             this.rdoExtensionDeleteByPosition.AutoSize = true;
             this.rdoExtensionDeleteByPosition.Location = new System.Drawing.Point(154, 10);
+            this.rdoExtensionDeleteByPosition.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoExtensionDeleteByPosition.Name = "rdoExtensionDeleteByPosition";
             this.rdoExtensionDeleteByPosition.Size = new System.Drawing.Size(74, 21);
             this.rdoExtensionDeleteByPosition.TabIndex = 2;
@@ -617,6 +656,7 @@
             // 
             this.lblExtensionDeleteContent1.AutoSize = true;
             this.lblExtensionDeleteContent1.Location = new System.Drawing.Point(12, 40);
+            this.lblExtensionDeleteContent1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblExtensionDeleteContent1.Name = "lblExtensionDeleteContent1";
             this.lblExtensionDeleteContent1.Size = new System.Drawing.Size(56, 17);
             this.lblExtensionDeleteContent1.TabIndex = 4;
@@ -626,6 +666,7 @@
             // 
             this.rdoExtensionDeleteByContent.AutoSize = true;
             this.rdoExtensionDeleteByContent.Location = new System.Drawing.Point(74, 10);
+            this.rdoExtensionDeleteByContent.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoExtensionDeleteByContent.Name = "rdoExtensionDeleteByContent";
             this.rdoExtensionDeleteByContent.Size = new System.Drawing.Size(74, 21);
             this.rdoExtensionDeleteByContent.TabIndex = 1;
@@ -637,6 +678,7 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Location = new System.Drawing.Point(12, 10);
+            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(56, 17);
             this.label27.TabIndex = 0;
@@ -645,7 +687,8 @@
             // cbEnableExtension
             // 
             this.cbEnableExtension.AutoSize = true;
-            this.cbEnableExtension.Location = new System.Drawing.Point(4, 15);
+            this.cbEnableExtension.Location = new System.Drawing.Point(4, 16);
+            this.cbEnableExtension.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbEnableExtension.Name = "cbEnableExtension";
             this.cbEnableExtension.Size = new System.Drawing.Size(87, 21);
             this.cbEnableExtension.TabIndex = 21;
@@ -673,7 +716,8 @@
             this.panelNumberSetting.Controls.Add(this.rdoNumberStart);
             this.panelNumberSetting.Controls.Add(this.cbEnableNumber);
             this.panelNumberSetting.Controls.Add(this.label6);
-            this.panelNumberSetting.Location = new System.Drawing.Point(3, 318);
+            this.panelNumberSetting.Location = new System.Drawing.Point(4, 317);
+            this.panelNumberSetting.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelNumberSetting.Name = "panelNumberSetting";
             this.panelNumberSetting.Size = new System.Drawing.Size(331, 233);
             this.panelNumberSetting.TabIndex = 9;
@@ -683,6 +727,7 @@
             this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.Red;
             this.label10.Location = new System.Drawing.Point(33, 205);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(253, 17);
             this.label10.TabIndex = 20;
@@ -692,7 +737,8 @@
             // 
             this.label15.AutoSize = true;
             this.label15.ForeColor = System.Drawing.Color.Red;
-            this.label15.Location = new System.Drawing.Point(9, 179);
+            this.label15.Location = new System.Drawing.Point(9, 178);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(235, 17);
             this.label15.TabIndex = 19;
@@ -701,6 +747,7 @@
             // nudNumberDigits
             // 
             this.nudNumberDigits.Location = new System.Drawing.Point(71, 136);
+            this.nudNumberDigits.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudNumberDigits.Maximum = new decimal(new int[] {
             10,
             0,
@@ -724,7 +771,8 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(9, 138);
+            this.label14.Location = new System.Drawing.Point(9, 137);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(56, 17);
             this.label14.TabIndex = 17;
@@ -733,6 +781,7 @@
             // nudIncremental
             // 
             this.nudIncremental.Location = new System.Drawing.Point(211, 94);
+            this.nudIncremental.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudIncremental.Name = "nudIncremental";
             this.nudIncremental.Size = new System.Drawing.Size(58, 23);
             this.nudIncremental.TabIndex = 16;
@@ -747,6 +796,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(149, 96);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(56, 17);
             this.label13.TabIndex = 15;
@@ -755,6 +805,7 @@
             // nudInitValue
             // 
             this.nudInitValue.Location = new System.Drawing.Point(71, 94);
+            this.nudInitValue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudInitValue.Maximum = new decimal(new int[] {
             9999999,
             0,
@@ -769,6 +820,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(9, 96);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(56, 17);
             this.label12.TabIndex = 13;
@@ -777,7 +829,8 @@
             // lblNumberCount2
             // 
             this.lblNumberCount2.AutoSize = true;
-            this.lblNumberCount2.Location = new System.Drawing.Point(87, 68);
+            this.lblNumberCount2.Location = new System.Drawing.Point(88, 68);
+            this.lblNumberCount2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNumberCount2.Name = "lblNumberCount2";
             this.lblNumberCount2.Size = new System.Drawing.Size(56, 17);
             this.lblNumberCount2.TabIndex = 11;
@@ -786,7 +839,8 @@
             // 
             // nudNumberCount
             // 
-            this.nudNumberCount.Location = new System.Drawing.Point(23, 66);
+            this.nudNumberCount.Location = new System.Drawing.Point(23, 67);
+            this.nudNumberCount.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudNumberCount.Minimum = new decimal(new int[] {
             1,
             0,
@@ -807,6 +861,7 @@
             // 
             this.rdoNumberCustom.AutoSize = true;
             this.rdoNumberCustom.Location = new System.Drawing.Point(149, 44);
+            this.rdoNumberCustom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoNumberCustom.Name = "rdoNumberCustom";
             this.rdoNumberCustom.Size = new System.Drawing.Size(62, 21);
             this.rdoNumberCustom.TabIndex = 12;
@@ -818,6 +873,7 @@
             // 
             this.lblNumberCount1.AutoSize = true;
             this.lblNumberCount1.Location = new System.Drawing.Point(5, 68);
+            this.lblNumberCount1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNumberCount1.Name = "lblNumberCount1";
             this.lblNumberCount1.Size = new System.Drawing.Size(20, 17);
             this.lblNumberCount1.TabIndex = 9;
@@ -828,6 +884,7 @@
             // 
             this.rdoNumberEnd.AutoSize = true;
             this.rdoNumberEnd.Location = new System.Drawing.Point(96, 44);
+            this.rdoNumberEnd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoNumberEnd.Name = "rdoNumberEnd";
             this.rdoNumberEnd.Size = new System.Drawing.Size(50, 21);
             this.rdoNumberEnd.TabIndex = 11;
@@ -839,6 +896,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(5, 60);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(0, 17);
             this.label5.TabIndex = 1;
@@ -848,6 +906,7 @@
             this.rdoNumberStart.AutoSize = true;
             this.rdoNumberStart.Checked = true;
             this.rdoNumberStart.Location = new System.Drawing.Point(40, 44);
+            this.rdoNumberStart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoNumberStart.Name = "rdoNumberStart";
             this.rdoNumberStart.Size = new System.Drawing.Size(50, 21);
             this.rdoNumberStart.TabIndex = 10;
@@ -859,7 +918,8 @@
             // cbEnableNumber
             // 
             this.cbEnableNumber.AutoSize = true;
-            this.cbEnableNumber.Location = new System.Drawing.Point(6, 12);
+            this.cbEnableNumber.Location = new System.Drawing.Point(6, 11);
+            this.cbEnableNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbEnableNumber.Name = "cbEnableNumber";
             this.cbEnableNumber.Size = new System.Drawing.Size(75, 21);
             this.cbEnableNumber.TabIndex = 0;
@@ -870,7 +930,8 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 46);
+            this.label6.Location = new System.Drawing.Point(6, 45);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 17);
             this.label6.TabIndex = 9;
@@ -881,7 +942,8 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.cbEditFileName);
             this.panel1.Controls.Add(this.tabOptionControl);
-            this.panel1.Location = new System.Drawing.Point(3, 38);
+            this.panel1.Location = new System.Drawing.Point(4, 38);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(331, 224);
             this.panel1.TabIndex = 8;
@@ -890,6 +952,7 @@
             // 
             this.cbEditFileName.AutoSize = true;
             this.cbEditFileName.Location = new System.Drawing.Point(7, 16);
+            this.cbEditFileName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbEditFileName.Name = "cbEditFileName";
             this.cbEditFileName.Size = new System.Drawing.Size(87, 21);
             this.cbEditFileName.TabIndex = 10;
@@ -903,7 +966,8 @@
             this.tabOptionControl.Controls.Add(this.tabInsert);
             this.tabOptionControl.Controls.Add(this.tabReplace);
             this.tabOptionControl.Controls.Add(this.tabDelete);
-            this.tabOptionControl.Location = new System.Drawing.Point(3, 43);
+            this.tabOptionControl.Location = new System.Drawing.Point(4, 42);
+            this.tabOptionControl.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabOptionControl.Name = "tabOptionControl";
             this.tabOptionControl.SelectedIndex = 0;
             this.tabOptionControl.Size = new System.Drawing.Size(321, 149);
@@ -915,8 +979,9 @@
             this.tabCustom.Controls.Add(this.txtNewName);
             this.tabCustom.Controls.Add(this.label2);
             this.tabCustom.Location = new System.Drawing.Point(4, 26);
+            this.tabCustom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabCustom.Name = "tabCustom";
-            this.tabCustom.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCustom.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabCustom.Size = new System.Drawing.Size(313, 119);
             this.tabCustom.TabIndex = 0;
             this.tabCustom.Text = "自定义";
@@ -925,6 +990,7 @@
             // txtNewName
             // 
             this.txtNewName.Location = new System.Drawing.Point(65, 23);
+            this.txtNewName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtNewName.Name = "txtNewName";
             this.txtNewName.Size = new System.Drawing.Size(230, 23);
             this.txtNewName.TabIndex = 1;
@@ -934,6 +1000,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 26);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 17);
             this.label2.TabIndex = 0;
@@ -950,10 +1017,11 @@
             this.tabInsert.Controls.Add(this.rdoInsertEnd);
             this.tabInsert.Controls.Add(this.rdoInsertStart);
             this.tabInsert.Controls.Add(this.label3);
-            this.tabInsert.Location = new System.Drawing.Point(4, 26);
+            this.tabInsert.Location = new System.Drawing.Point(4, 22);
+            this.tabInsert.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabInsert.Name = "tabInsert";
-            this.tabInsert.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInsert.Size = new System.Drawing.Size(313, 119);
+            this.tabInsert.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.tabInsert.Size = new System.Drawing.Size(313, 123);
             this.tabInsert.TabIndex = 1;
             this.tabInsert.Text = "插入";
             this.tabInsert.UseVisualStyleBackColor = true;
@@ -961,6 +1029,7 @@
             // txtInsertText
             // 
             this.txtInsertText.Location = new System.Drawing.Point(68, 69);
+            this.txtInsertText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtInsertText.Name = "txtInsertText";
             this.txtInsertText.Size = new System.Drawing.Size(153, 23);
             this.txtInsertText.TabIndex = 8;
@@ -970,6 +1039,7 @@
             // 
             this.lblInsertText.AutoSize = true;
             this.lblInsertText.Location = new System.Drawing.Point(9, 72);
+            this.lblInsertText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInsertText.Name = "lblInsertText";
             this.lblInsertText.Size = new System.Drawing.Size(56, 17);
             this.lblInsertText.TabIndex = 7;
@@ -979,6 +1049,7 @@
             // 
             this.lblInsertCharPosition2.AutoSize = true;
             this.lblInsertCharPosition2.Location = new System.Drawing.Point(89, 42);
+            this.lblInsertCharPosition2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInsertCharPosition2.Name = "lblInsertCharPosition2";
             this.lblInsertCharPosition2.Size = new System.Drawing.Size(56, 17);
             this.lblInsertCharPosition2.TabIndex = 6;
@@ -986,7 +1057,8 @@
             // 
             // nudInsertCharPosition
             // 
-            this.nudInsertCharPosition.Location = new System.Drawing.Point(30, 39);
+            this.nudInsertCharPosition.Location = new System.Drawing.Point(30, 40);
+            this.nudInsertCharPosition.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudInsertCharPosition.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1006,6 +1078,7 @@
             // 
             this.lblInsertCharPosition1.AutoSize = true;
             this.lblInsertCharPosition1.Location = new System.Drawing.Point(9, 42);
+            this.lblInsertCharPosition1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInsertCharPosition1.Name = "lblInsertCharPosition1";
             this.lblInsertCharPosition1.Size = new System.Drawing.Size(20, 17);
             this.lblInsertCharPosition1.TabIndex = 4;
@@ -1015,6 +1088,7 @@
             // 
             this.rdoInsertCustom.AutoSize = true;
             this.rdoInsertCustom.Location = new System.Drawing.Point(159, 18);
+            this.rdoInsertCustom.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoInsertCustom.Name = "rdoInsertCustom";
             this.rdoInsertCustom.Size = new System.Drawing.Size(62, 21);
             this.rdoInsertCustom.TabIndex = 3;
@@ -1026,6 +1100,7 @@
             // 
             this.rdoInsertEnd.AutoSize = true;
             this.rdoInsertEnd.Location = new System.Drawing.Point(103, 18);
+            this.rdoInsertEnd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoInsertEnd.Name = "rdoInsertEnd";
             this.rdoInsertEnd.Size = new System.Drawing.Size(50, 21);
             this.rdoInsertEnd.TabIndex = 2;
@@ -1037,6 +1112,7 @@
             // 
             this.rdoInsertStart.AutoSize = true;
             this.rdoInsertStart.Location = new System.Drawing.Point(47, 18);
+            this.rdoInsertStart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoInsertStart.Name = "rdoInsertStart";
             this.rdoInsertStart.Size = new System.Drawing.Size(50, 21);
             this.rdoInsertStart.TabIndex = 1;
@@ -1048,6 +1124,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 18);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 17);
             this.label3.TabIndex = 0;
@@ -1059,9 +1136,10 @@
             this.tabReplace.Controls.Add(this.label8);
             this.tabReplace.Controls.Add(this.txtSearchText);
             this.tabReplace.Controls.Add(this.label7);
-            this.tabReplace.Location = new System.Drawing.Point(4, 26);
+            this.tabReplace.Location = new System.Drawing.Point(4, 22);
+            this.tabReplace.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabReplace.Name = "tabReplace";
-            this.tabReplace.Size = new System.Drawing.Size(313, 119);
+            this.tabReplace.Size = new System.Drawing.Size(313, 123);
             this.tabReplace.TabIndex = 2;
             this.tabReplace.Text = "替换";
             this.tabReplace.UseVisualStyleBackColor = true;
@@ -1069,6 +1147,7 @@
             // txtReplaceText
             // 
             this.txtReplaceText.Location = new System.Drawing.Point(75, 58);
+            this.txtReplaceText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtReplaceText.Name = "txtReplaceText";
             this.txtReplaceText.Size = new System.Drawing.Size(220, 23);
             this.txtReplaceText.TabIndex = 3;
@@ -1078,6 +1157,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(13, 61);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 17);
             this.label8.TabIndex = 2;
@@ -1086,6 +1166,7 @@
             // txtSearchText
             // 
             this.txtSearchText.Location = new System.Drawing.Point(75, 18);
+            this.txtSearchText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchText.Name = "txtSearchText";
             this.txtSearchText.Size = new System.Drawing.Size(220, 23);
             this.txtSearchText.TabIndex = 1;
@@ -1095,6 +1176,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(13, 21);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(56, 17);
             this.label7.TabIndex = 0;
@@ -1113,9 +1195,10 @@
             this.tabDelete.Controls.Add(this.lblDeleteText);
             this.tabDelete.Controls.Add(this.rdoDeletebyContent);
             this.tabDelete.Controls.Add(this.label9);
-            this.tabDelete.Location = new System.Drawing.Point(4, 26);
+            this.tabDelete.Location = new System.Drawing.Point(4, 22);
+            this.tabDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabDelete.Name = "tabDelete";
-            this.tabDelete.Size = new System.Drawing.Size(313, 119);
+            this.tabDelete.Size = new System.Drawing.Size(313, 123);
             this.tabDelete.TabIndex = 3;
             this.tabDelete.Text = "删除";
             this.tabDelete.UseVisualStyleBackColor = true;
@@ -1124,6 +1207,7 @@
             // 
             this.lblDelteCount2.AutoSize = true;
             this.lblDelteCount2.Location = new System.Drawing.Point(126, 92);
+            this.lblDelteCount2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDelteCount2.Name = "lblDelteCount2";
             this.lblDelteCount2.Size = new System.Drawing.Size(44, 17);
             this.lblDelteCount2.TabIndex = 9;
@@ -1131,7 +1215,8 @@
             // 
             // nudDeleteCount
             // 
-            this.nudDeleteCount.Location = new System.Drawing.Point(62, 90);
+            this.nudDeleteCount.Location = new System.Drawing.Point(62, 91);
+            this.nudDeleteCount.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudDeleteCount.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1150,7 +1235,8 @@
             // lblDeletePosition2
             // 
             this.lblDeletePosition2.AutoSize = true;
-            this.lblDeletePosition2.Location = new System.Drawing.Point(150, 66);
+            this.lblDeletePosition2.Location = new System.Drawing.Point(150, 67);
+            this.lblDeletePosition2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDeletePosition2.Name = "lblDeletePosition2";
             this.lblDeletePosition2.Size = new System.Drawing.Size(92, 17);
             this.lblDeletePosition2.TabIndex = 12;
@@ -1160,6 +1246,7 @@
             // 
             this.lblDeleteCount1.AutoSize = true;
             this.lblDeleteCount1.Location = new System.Drawing.Point(12, 92);
+            this.lblDeleteCount1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDeleteCount1.Name = "lblDeleteCount1";
             this.lblDeleteCount1.Size = new System.Drawing.Size(44, 17);
             this.lblDeleteCount1.TabIndex = 7;
@@ -1168,6 +1255,7 @@
             // txtDeleteText
             // 
             this.txtDeleteText.Location = new System.Drawing.Point(74, 37);
+            this.txtDeleteText.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDeleteText.Name = "txtDeleteText";
             this.txtDeleteText.Size = new System.Drawing.Size(168, 23);
             this.txtDeleteText.TabIndex = 5;
@@ -1176,6 +1264,7 @@
             // nudDeletePosition
             // 
             this.nudDeletePosition.Location = new System.Drawing.Point(86, 64);
+            this.nudDeletePosition.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nudDeletePosition.Minimum = new decimal(new int[] {
             1,
             0,
@@ -1194,7 +1283,8 @@
             // lblDeletePositon1
             // 
             this.lblDeletePositon1.AutoSize = true;
-            this.lblDeletePositon1.Location = new System.Drawing.Point(12, 66);
+            this.lblDeletePositon1.Location = new System.Drawing.Point(12, 67);
+            this.lblDeletePositon1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDeletePositon1.Name = "lblDeletePositon1";
             this.lblDeletePositon1.Size = new System.Drawing.Size(68, 17);
             this.lblDeletePositon1.TabIndex = 10;
@@ -1204,6 +1294,7 @@
             // 
             this.rdoDeleteByPosition.AutoSize = true;
             this.rdoDeleteByPosition.Location = new System.Drawing.Point(154, 10);
+            this.rdoDeleteByPosition.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoDeleteByPosition.Name = "rdoDeleteByPosition";
             this.rdoDeleteByPosition.Size = new System.Drawing.Size(74, 21);
             this.rdoDeleteByPosition.TabIndex = 2;
@@ -1215,6 +1306,7 @@
             // 
             this.lblDeleteText.AutoSize = true;
             this.lblDeleteText.Location = new System.Drawing.Point(12, 40);
+            this.lblDeleteText.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDeleteText.Name = "lblDeleteText";
             this.lblDeleteText.Size = new System.Drawing.Size(56, 17);
             this.lblDeleteText.TabIndex = 4;
@@ -1224,6 +1316,7 @@
             // 
             this.rdoDeletebyContent.AutoSize = true;
             this.rdoDeletebyContent.Location = new System.Drawing.Point(74, 10);
+            this.rdoDeletebyContent.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoDeletebyContent.Name = "rdoDeletebyContent";
             this.rdoDeletebyContent.Size = new System.Drawing.Size(74, 21);
             this.rdoDeletebyContent.TabIndex = 1;
@@ -1235,6 +1328,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(12, 10);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 17);
             this.label9.TabIndex = 0;
@@ -1247,7 +1341,8 @@
             this.panel_ToggleCase.Controls.Add(this.rdoAllLow);
             this.panel_ToggleCase.Controls.Add(this.rdoNoToggle);
             this.panel_ToggleCase.Controls.Add(this.label4);
-            this.panel_ToggleCase.Location = new System.Drawing.Point(3, 268);
+            this.panel_ToggleCase.Location = new System.Drawing.Point(4, 268);
+            this.panel_ToggleCase.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel_ToggleCase.Name = "panel_ToggleCase";
             this.panel_ToggleCase.Size = new System.Drawing.Size(331, 44);
             this.panel_ToggleCase.TabIndex = 7;
@@ -1255,7 +1350,8 @@
             // rdoAllUp
             // 
             this.rdoAllUp.AutoSize = true;
-            this.rdoAllUp.Location = new System.Drawing.Point(200, 12);
+            this.rdoAllUp.Location = new System.Drawing.Point(200, 11);
+            this.rdoAllUp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoAllUp.Name = "rdoAllUp";
             this.rdoAllUp.Size = new System.Drawing.Size(86, 21);
             this.rdoAllUp.TabIndex = 17;
@@ -1266,7 +1362,8 @@
             // rdoAllLow
             // 
             this.rdoAllLow.AutoSize = true;
-            this.rdoAllLow.Location = new System.Drawing.Point(113, 12);
+            this.rdoAllLow.Location = new System.Drawing.Point(113, 11);
+            this.rdoAllLow.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoAllLow.Name = "rdoAllLow";
             this.rdoAllLow.Size = new System.Drawing.Size(86, 21);
             this.rdoAllLow.TabIndex = 16;
@@ -1278,7 +1375,8 @@
             // 
             this.rdoNoToggle.AutoSize = true;
             this.rdoNoToggle.Checked = true;
-            this.rdoNoToggle.Location = new System.Drawing.Point(78, 12);
+            this.rdoNoToggle.Location = new System.Drawing.Point(78, 11);
+            this.rdoNoToggle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rdoNoToggle.Name = "rdoNoToggle";
             this.rdoNoToggle.Size = new System.Drawing.Size(38, 21);
             this.rdoNoToggle.TabIndex = 13;
@@ -1291,6 +1389,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(4, 14);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 17);
             this.label4.TabIndex = 0;
@@ -1299,8 +1398,9 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(3, 8);
+            this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 15F);
+            this.label1.Location = new System.Drawing.Point(4, 8);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 27);
             this.label1.TabIndex = 5;
@@ -1313,7 +1413,9 @@
             this.ClientSize = new System.Drawing.Size(1494, 800);
             this.Controls.Add(this.panel_optionSetting);
             this.Controls.Add(this.panel_Data);
+            this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Windows文件批量重命名";
@@ -1468,3 +1570,4 @@
         private DataGridViewTextBoxColumn OptionState;
     }
 }
+
