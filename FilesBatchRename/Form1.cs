@@ -91,7 +91,6 @@ namespace FilesBatchRename
                 foreach (var fsInfo in fsInfos)
                 {
                     InsertDataTable(dt, fsInfo.FullName);
-
                 }
                 this.dgvFileData.DataSource = dt;
                 this.lbl_filecount.Text = Resources.TotalFileCount + dt.Rows.Count;
@@ -376,6 +375,7 @@ namespace FilesBatchRename
             {
                 return false;
             }
+            
         }
 
         /// <summary>
@@ -386,6 +386,12 @@ namespace FilesBatchRename
         private void BtnStartWork_Click(object sender, EventArgs e)
         {
             if (!(this.dgvFileData.DataSource is DataTable dt) || dt.Rows.Count < 1) return;
+            if (this.cbEditFileName.Checked && this.tabOptionControl.SelectedIndex == 0 && !this.cbEnableNumber.Checked)
+            {
+                MessageBox.Show(Resources.MustEnableNumberSetting);
+                return;
+            }
+
             for (var i = 0; i < dt.Rows.Count; i++)
             {
                 var row = dt.Rows[i];
@@ -664,5 +670,13 @@ namespace FilesBatchRename
         }
 
         #endregion
+
+        private void DgvFileData_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            var fileCount =
+                int.Parse(this.lbl_filecount.Text.Substring(
+                    this.lbl_filecount.Text.IndexOf("：", StringComparison.Ordinal) + 1));
+            this.lbl_filecount.Text = Resources.TotalFileCount + (--fileCount);
+        }
     }
 }

@@ -106,6 +106,15 @@ namespace FilesBatchRename.Properties {
         }
         
         /// <summary>
+        ///   查找类似 自定义重命名时必须启用编号设置！ 的本地化字符串。
+        /// </summary>
+        internal static string MustEnableNumberSetting {
+            get {
+                return ResourceManager.GetString("MustEnableNumberSetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 请填写要插入的内容！ 的本地化字符串。
         /// </summary>
         internal static string NewContent {

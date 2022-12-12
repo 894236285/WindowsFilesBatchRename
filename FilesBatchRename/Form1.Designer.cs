@@ -33,11 +33,6 @@ namespace FilesBatchRename
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel_Data = new System.Windows.Forms.Panel();
             this.dgvFileData = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SourceFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NewFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_startwork = new System.Windows.Forms.Button();
             this.btn_chooseFolder = new System.Windows.Forms.Button();
             this.btn_chooseFiles = new System.Windows.Forms.Button();
@@ -133,6 +128,11 @@ namespace FilesBatchRename
             this.rdoNoToggle = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SourceFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NewFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FilePath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_Data.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileData)).BeginInit();
             this.panel_optionSetting.SuspendLayout();
@@ -179,6 +179,9 @@ namespace FilesBatchRename
             // 
             // dgvFileData
             // 
+            this.dgvFileData.AllowUserToAddRows = false;
+            this.dgvFileData.AllowUserToResizeColumns = false;
+            this.dgvFileData.AllowUserToResizeRows = false;
             this.dgvFileData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFileData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -188,55 +191,14 @@ namespace FilesBatchRename
             this.OptionState});
             this.dgvFileData.Location = new System.Drawing.Point(13, 55);
             this.dgvFileData.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvFileData.MultiSelect = false;
             this.dgvFileData.Name = "dgvFileData";
             this.dgvFileData.RowTemplate.Height = 25;
+            this.dgvFileData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFileData.Size = new System.Drawing.Size(1104, 718);
             this.dgvFileData.TabIndex = 4;
             this.dgvFileData.Visible = false;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "序号";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Id.Width = 60;
-            // 
-            // SourceFileName
-            // 
-            this.SourceFileName.DataPropertyName = "SourceFileName";
-            this.SourceFileName.HeaderText = "源文件名称";
-            this.SourceFileName.Name = "SourceFileName";
-            this.SourceFileName.ReadOnly = true;
-            this.SourceFileName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.SourceFileName.Width = 250;
-            // 
-            // NewFileName
-            // 
-            this.NewFileName.DataPropertyName = "NewFileName";
-            this.NewFileName.HeaderText = "预计新文件名";
-            this.NewFileName.Name = "NewFileName";
-            this.NewFileName.ReadOnly = true;
-            this.NewFileName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.NewFileName.Width = 250;
-            // 
-            // FilePath
-            // 
-            this.FilePath.DataPropertyName = "FilePath";
-            this.FilePath.HeaderText = "文件路径";
-            this.FilePath.Name = "FilePath";
-            this.FilePath.ReadOnly = true;
-            this.FilePath.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.FilePath.Width = 420;
-            // 
-            // OptionState
-            // 
-            this.OptionState.DataPropertyName = "OptionState";
-            this.OptionState.HeaderText = "操作状态";
-            this.OptionState.Name = "OptionState";
-            this.OptionState.ReadOnly = true;
-            this.OptionState.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvFileData.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DgvFileData_UserDeletedRow);
             // 
             // btn_startwork
             // 
@@ -367,11 +329,11 @@ namespace FilesBatchRename
             this.tabExtensionInsert.Controls.Add(this.rdoExtensionInsertEnd);
             this.tabExtensionInsert.Controls.Add(this.rdoExtensionInsertStart);
             this.tabExtensionInsert.Controls.Add(this.label19);
-            this.tabExtensionInsert.Location = new System.Drawing.Point(4, 22);
+            this.tabExtensionInsert.Location = new System.Drawing.Point(4, 26);
             this.tabExtensionInsert.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabExtensionInsert.Name = "tabExtensionInsert";
             this.tabExtensionInsert.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabExtensionInsert.Size = new System.Drawing.Size(313, 123);
+            this.tabExtensionInsert.Size = new System.Drawing.Size(313, 119);
             this.tabExtensionInsert.TabIndex = 1;
             this.tabExtensionInsert.Text = "插入";
             this.tabExtensionInsert.UseVisualStyleBackColor = true;
@@ -486,10 +448,10 @@ namespace FilesBatchRename
             this.tabExtensionReplace.Controls.Add(this.label20);
             this.tabExtensionReplace.Controls.Add(this.txtExtensionSearchText);
             this.tabExtensionReplace.Controls.Add(this.label21);
-            this.tabExtensionReplace.Location = new System.Drawing.Point(4, 22);
+            this.tabExtensionReplace.Location = new System.Drawing.Point(4, 26);
             this.tabExtensionReplace.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabExtensionReplace.Name = "tabExtensionReplace";
-            this.tabExtensionReplace.Size = new System.Drawing.Size(313, 123);
+            this.tabExtensionReplace.Size = new System.Drawing.Size(313, 119);
             this.tabExtensionReplace.TabIndex = 2;
             this.tabExtensionReplace.Text = "替换";
             this.tabExtensionReplace.UseVisualStyleBackColor = true;
@@ -545,10 +507,10 @@ namespace FilesBatchRename
             this.tabExtensionDelete.Controls.Add(this.lblExtensionDeleteContent1);
             this.tabExtensionDelete.Controls.Add(this.rdoExtensionDeleteByContent);
             this.tabExtensionDelete.Controls.Add(this.label27);
-            this.tabExtensionDelete.Location = new System.Drawing.Point(4, 22);
+            this.tabExtensionDelete.Location = new System.Drawing.Point(4, 26);
             this.tabExtensionDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabExtensionDelete.Name = "tabExtensionDelete";
-            this.tabExtensionDelete.Size = new System.Drawing.Size(313, 123);
+            this.tabExtensionDelete.Size = new System.Drawing.Size(313, 119);
             this.tabExtensionDelete.TabIndex = 3;
             this.tabExtensionDelete.Text = "删除";
             this.tabExtensionDelete.UseVisualStyleBackColor = true;
@@ -1017,11 +979,11 @@ namespace FilesBatchRename
             this.tabInsert.Controls.Add(this.rdoInsertEnd);
             this.tabInsert.Controls.Add(this.rdoInsertStart);
             this.tabInsert.Controls.Add(this.label3);
-            this.tabInsert.Location = new System.Drawing.Point(4, 22);
+            this.tabInsert.Location = new System.Drawing.Point(4, 26);
             this.tabInsert.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabInsert.Name = "tabInsert";
             this.tabInsert.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.tabInsert.Size = new System.Drawing.Size(313, 123);
+            this.tabInsert.Size = new System.Drawing.Size(313, 119);
             this.tabInsert.TabIndex = 1;
             this.tabInsert.Text = "插入";
             this.tabInsert.UseVisualStyleBackColor = true;
@@ -1136,10 +1098,10 @@ namespace FilesBatchRename
             this.tabReplace.Controls.Add(this.label8);
             this.tabReplace.Controls.Add(this.txtSearchText);
             this.tabReplace.Controls.Add(this.label7);
-            this.tabReplace.Location = new System.Drawing.Point(4, 22);
+            this.tabReplace.Location = new System.Drawing.Point(4, 26);
             this.tabReplace.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabReplace.Name = "tabReplace";
-            this.tabReplace.Size = new System.Drawing.Size(313, 123);
+            this.tabReplace.Size = new System.Drawing.Size(313, 119);
             this.tabReplace.TabIndex = 2;
             this.tabReplace.Text = "替换";
             this.tabReplace.UseVisualStyleBackColor = true;
@@ -1195,10 +1157,10 @@ namespace FilesBatchRename
             this.tabDelete.Controls.Add(this.lblDeleteText);
             this.tabDelete.Controls.Add(this.rdoDeletebyContent);
             this.tabDelete.Controls.Add(this.label9);
-            this.tabDelete.Location = new System.Drawing.Point(4, 22);
+            this.tabDelete.Location = new System.Drawing.Point(4, 26);
             this.tabDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tabDelete.Name = "tabDelete";
-            this.tabDelete.Size = new System.Drawing.Size(313, 123);
+            this.tabDelete.Size = new System.Drawing.Size(313, 119);
             this.tabDelete.TabIndex = 3;
             this.tabDelete.Text = "删除";
             this.tabDelete.UseVisualStyleBackColor = true;
@@ -1405,6 +1367,54 @@ namespace FilesBatchRename
             this.label1.Size = new System.Drawing.Size(92, 27);
             this.label1.TabIndex = 5;
             this.label1.Text = "操作配置";
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "序号";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Id.Width = 60;
+            // 
+            // SourceFileName
+            // 
+            this.SourceFileName.DataPropertyName = "SourceFileName";
+            this.SourceFileName.HeaderText = "源文件名称";
+            this.SourceFileName.Name = "SourceFileName";
+            this.SourceFileName.ReadOnly = true;
+            this.SourceFileName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SourceFileName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.SourceFileName.Width = 250;
+            // 
+            // NewFileName
+            // 
+            this.NewFileName.DataPropertyName = "NewFileName";
+            this.NewFileName.HeaderText = "预计新文件名";
+            this.NewFileName.Name = "NewFileName";
+            this.NewFileName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.NewFileName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NewFileName.Width = 250;
+            // 
+            // FilePath
+            // 
+            this.FilePath.DataPropertyName = "FilePath";
+            this.FilePath.HeaderText = "文件路径";
+            this.FilePath.Name = "FilePath";
+            this.FilePath.ReadOnly = true;
+            this.FilePath.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.FilePath.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.FilePath.Width = 420;
+            // 
+            // OptionState
+            // 
+            this.OptionState.DataPropertyName = "OptionState";
+            this.OptionState.HeaderText = "操作状态";
+            this.OptionState.Name = "OptionState";
+            this.OptionState.ReadOnly = true;
+            this.OptionState.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.OptionState.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Form1
             // 

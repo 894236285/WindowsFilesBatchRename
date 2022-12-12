@@ -156,4 +156,7 @@
   <data name="TotalFileCount" xml:space="preserve">
     <value>文件总数：</value>
   </data>
+  <data name="MustEnableNumberSetting" xml:space="preserve">
+	  <value>自定义重命名时必须启用编号设置！</value>
+  </data>
 </root>
