@@ -133,6 +133,15 @@ namespace WindowsFilesBatchRename.Properties {
         }
         
         /// <summary>
+        ///   查找类似 请先调整配置！ 的本地化字符串。
+        /// </summary>
+        internal static string OptionFirst {
+            get {
+                return ResourceManager.GetString("OptionFirst", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 要删除的字符开始位置以及删除个数都必须大于0！ 的本地化字符串。
         /// </summary>
         internal static string PositionAndCountMustGreaterThanZero {

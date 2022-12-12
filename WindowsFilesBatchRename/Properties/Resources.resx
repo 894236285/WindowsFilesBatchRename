@@ -153,4 +153,7 @@
   <data name="NewExtension" xml:space="preserve">
 	  <value>请填写新的扩展名！</value>
   </data>
+  <data name="OptionFirst" xml:space="preserve">
+	  <value>请先调整配置！</value>
+  </data>
 </root>

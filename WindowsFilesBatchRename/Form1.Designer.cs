@@ -41,7 +41,7 @@
             this.btn_chooseFiles = new System.Windows.Forms.Button();
             this.lbl_filecount = new System.Windows.Forms.Label();
             this.panel_optionSetting = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.panelExtensionSetting = new System.Windows.Forms.Panel();
             this.tabExtensionControl = new System.Windows.Forms.TabControl();
             this.tabExtensionCustom = new System.Windows.Forms.TabPage();
             this.txtNewExtension = new System.Windows.Forms.TextBox();
@@ -74,7 +74,7 @@
             this.rdoExtensionDeleteByContent = new System.Windows.Forms.RadioButton();
             this.label27 = new System.Windows.Forms.Label();
             this.cbEnableExtension = new System.Windows.Forms.CheckBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.panelNumberSetting = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.nudNumberDigits = new System.Windows.Forms.NumericUpDown();
@@ -134,7 +134,7 @@
             this.panel_Data.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileData)).BeginInit();
             this.panel_optionSetting.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.panelExtensionSetting.SuspendLayout();
             this.tabExtensionControl.SuspendLayout();
             this.tabExtensionCustom.SuspendLayout();
             this.tabExtensionInsert.SuspendLayout();
@@ -143,7 +143,7 @@
             this.tabExtensionDelete.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudExtensionDeleteCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudExtensionDeletePosition)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.panelNumberSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberDigits)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudIncremental)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudInitValue)).BeginInit();
@@ -210,7 +210,7 @@
             // NewFileName
             // 
             this.NewFileName.DataPropertyName = "NewFileName";
-            this.NewFileName.HeaderText = "新文件名";
+            this.NewFileName.HeaderText = "预计新文件名";
             this.NewFileName.Name = "NewFileName";
             this.NewFileName.ReadOnly = true;
             this.NewFileName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -242,7 +242,7 @@
             this.btn_startwork.TabIndex = 3;
             this.btn_startwork.Text = "开始重命名";
             this.btn_startwork.UseVisualStyleBackColor = true;
-            this.btn_startwork.Click += new System.EventHandler(this.btnStartWork_Click);
+            this.btn_startwork.Click += new System.EventHandler(this.BtnStartWork_Click);
             // 
             // btn_chooseFolder
             // 
@@ -253,7 +253,7 @@
             this.btn_chooseFolder.TabIndex = 2;
             this.btn_chooseFolder.Text = "选择文件夹";
             this.btn_chooseFolder.UseVisualStyleBackColor = true;
-            this.btn_chooseFolder.Click += new System.EventHandler(this.btn_chooseFolder_Click);
+            this.btn_chooseFolder.Click += new System.EventHandler(this.Btn_chooseFolder_Click);
             // 
             // btn_chooseFiles
             // 
@@ -264,7 +264,7 @@
             this.btn_chooseFiles.TabIndex = 1;
             this.btn_chooseFiles.Text = "选择文件";
             this.btn_chooseFiles.UseVisualStyleBackColor = true;
-            this.btn_chooseFiles.Click += new System.EventHandler(this.btn_chooseFiles_Click);
+            this.btn_chooseFiles.Click += new System.EventHandler(this.Btn_chooseFiles_Click);
             // 
             // lbl_filecount
             // 
@@ -279,8 +279,8 @@
             // panel_optionSetting
             // 
             this.panel_optionSetting.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel_optionSetting.Controls.Add(this.panel3);
-            this.panel_optionSetting.Controls.Add(this.panel2);
+            this.panel_optionSetting.Controls.Add(this.panelExtensionSetting);
+            this.panel_optionSetting.Controls.Add(this.panelNumberSetting);
             this.panel_optionSetting.Controls.Add(this.panel1);
             this.panel_optionSetting.Controls.Add(this.panel_ToggleCase);
             this.panel_optionSetting.Controls.Add(this.label1);
@@ -289,15 +289,15 @@
             this.panel_optionSetting.Size = new System.Drawing.Size(343, 778);
             this.panel_optionSetting.TabIndex = 1;
             // 
-            // panel3
+            // panelExtensionSetting
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.tabExtensionControl);
-            this.panel3.Controls.Add(this.cbEnableExtension);
-            this.panel3.Location = new System.Drawing.Point(3, 557);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(331, 216);
-            this.panel3.TabIndex = 10;
+            this.panelExtensionSetting.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelExtensionSetting.Controls.Add(this.tabExtensionControl);
+            this.panelExtensionSetting.Controls.Add(this.cbEnableExtension);
+            this.panelExtensionSetting.Location = new System.Drawing.Point(3, 557);
+            this.panelExtensionSetting.Name = "panelExtensionSetting";
+            this.panelExtensionSetting.Size = new System.Drawing.Size(331, 216);
+            this.panelExtensionSetting.TabIndex = 10;
             // 
             // tabExtensionControl
             // 
@@ -310,7 +310,7 @@
             this.tabExtensionControl.SelectedIndex = 0;
             this.tabExtensionControl.Size = new System.Drawing.Size(321, 149);
             this.tabExtensionControl.TabIndex = 22;
-            this.tabExtensionControl.SelectedIndexChanged += new System.EventHandler(this.tabExtensionControl_SelectedIndexChanged);
+            this.tabExtensionControl.SelectedIndexChanged += new System.EventHandler(this.TabExtensionControl_SelectedIndexChanged);
             // 
             // tabExtensionCustom
             // 
@@ -330,6 +330,7 @@
             this.txtNewExtension.Name = "txtNewExtension";
             this.txtNewExtension.Size = new System.Drawing.Size(230, 23);
             this.txtNewExtension.TabIndex = 1;
+            this.txtNewExtension.TextChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label11
             // 
@@ -365,6 +366,7 @@
             this.txtExtensionInsertText.Name = "txtExtensionInsertText";
             this.txtExtensionInsertText.Size = new System.Drawing.Size(153, 23);
             this.txtExtensionInsertText.TabIndex = 8;
+            this.txtExtensionInsertText.TextChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // lblExtensionInsertText
             // 
@@ -400,6 +402,7 @@
             0,
             0,
             0});
+            this.nudExtensionInsertChar.ValueChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // lblExtensionInsertChar1
             // 
@@ -419,7 +422,7 @@
             this.rdoExtensionInserCustom.TabIndex = 3;
             this.rdoExtensionInserCustom.Text = "自定义";
             this.rdoExtensionInserCustom.UseVisualStyleBackColor = true;
-            this.rdoExtensionInserCustom.CheckedChanged += new System.EventHandler(this.rdoExtensionInsertRadioButton_CheckedChanged);
+            this.rdoExtensionInserCustom.CheckedChanged += new System.EventHandler(this.RdoExtensionInsertRadioButton_CheckedChanged);
             // 
             // rdoExtensionInsertEnd
             // 
@@ -430,7 +433,7 @@
             this.rdoExtensionInsertEnd.TabIndex = 2;
             this.rdoExtensionInsertEnd.Text = "末尾";
             this.rdoExtensionInsertEnd.UseVisualStyleBackColor = true;
-            this.rdoExtensionInsertEnd.CheckedChanged += new System.EventHandler(this.rdoExtensionInsertRadioButton_CheckedChanged);
+            this.rdoExtensionInsertEnd.CheckedChanged += new System.EventHandler(this.RdoExtensionInsertRadioButton_CheckedChanged);
             // 
             // rdoExtensionInsertStart
             // 
@@ -441,7 +444,7 @@
             this.rdoExtensionInsertStart.TabIndex = 1;
             this.rdoExtensionInsertStart.Text = "开头";
             this.rdoExtensionInsertStart.UseVisualStyleBackColor = true;
-            this.rdoExtensionInsertStart.CheckedChanged += new System.EventHandler(this.rdoExtensionInsertRadioButton_CheckedChanged);
+            this.rdoExtensionInsertStart.CheckedChanged += new System.EventHandler(this.RdoExtensionInsertRadioButton_CheckedChanged);
             // 
             // label19
             // 
@@ -471,6 +474,7 @@
             this.txtExtensionReplaceText.Name = "txtExtensionReplaceText";
             this.txtExtensionReplaceText.Size = new System.Drawing.Size(220, 23);
             this.txtExtensionReplaceText.TabIndex = 3;
+            this.txtExtensionReplaceText.TextChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label20
             // 
@@ -487,6 +491,7 @@
             this.txtExtensionSearchText.Name = "txtExtensionSearchText";
             this.txtExtensionSearchText.Size = new System.Drawing.Size(220, 23);
             this.txtExtensionSearchText.TabIndex = 1;
+            this.txtExtensionSearchText.TextChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label21
             // 
@@ -542,6 +547,7 @@
             0,
             0,
             0});
+            this.nudExtensionDeleteCount.ValueChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // lblExtensionDeletePosition2
             // 
@@ -567,6 +573,7 @@
             this.txtExtensionDeleteContent.Name = "txtExtensionDeleteContent";
             this.txtExtensionDeleteContent.Size = new System.Drawing.Size(168, 23);
             this.txtExtensionDeleteContent.TabIndex = 5;
+            this.txtExtensionDeleteContent.TextChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // nudExtensionDeletePosition
             // 
@@ -584,6 +591,7 @@
             0,
             0,
             0});
+            this.nudExtensionDeletePosition.ValueChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // lblExtensionDeletePosition1
             // 
@@ -603,7 +611,7 @@
             this.rdoExtensionDeleteByPosition.TabIndex = 2;
             this.rdoExtensionDeleteByPosition.Text = "指定位置";
             this.rdoExtensionDeleteByPosition.UseVisualStyleBackColor = true;
-            this.rdoExtensionDeleteByPosition.CheckedChanged += new System.EventHandler(this.rdoExtensionDeleteRadioButton_CheckedChanged);
+            this.rdoExtensionDeleteByPosition.CheckedChanged += new System.EventHandler(this.RdoExtensionDeleteRadioButton_CheckedChanged);
             // 
             // lblExtensionDeleteContent1
             // 
@@ -623,7 +631,7 @@
             this.rdoExtensionDeleteByContent.TabIndex = 1;
             this.rdoExtensionDeleteByContent.Text = "指定内容";
             this.rdoExtensionDeleteByContent.UseVisualStyleBackColor = true;
-            this.rdoExtensionDeleteByContent.CheckedChanged += new System.EventHandler(this.rdoExtensionDeleteRadioButton_CheckedChanged);
+            this.rdoExtensionDeleteByContent.CheckedChanged += new System.EventHandler(this.RdoExtensionDeleteRadioButton_CheckedChanged);
             // 
             // label27
             // 
@@ -643,31 +651,32 @@
             this.cbEnableExtension.TabIndex = 21;
             this.cbEnableExtension.Text = "扩展名修改";
             this.cbEnableExtension.UseVisualStyleBackColor = true;
+            this.cbEnableExtension.CheckedChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
-            // panel2
+            // panelNumberSetting
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.nudNumberDigits);
-            this.panel2.Controls.Add(this.label14);
-            this.panel2.Controls.Add(this.nudIncremental);
-            this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.nudInitValue);
-            this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.lblNumberCount2);
-            this.panel2.Controls.Add(this.nudNumberCount);
-            this.panel2.Controls.Add(this.rdoNumberCustom);
-            this.panel2.Controls.Add(this.lblNumberCount1);
-            this.panel2.Controls.Add(this.rdoNumberEnd);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.rdoNumberStart);
-            this.panel2.Controls.Add(this.cbEnableNumber);
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Location = new System.Drawing.Point(3, 318);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(331, 233);
-            this.panel2.TabIndex = 9;
+            this.panelNumberSetting.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelNumberSetting.Controls.Add(this.label10);
+            this.panelNumberSetting.Controls.Add(this.label15);
+            this.panelNumberSetting.Controls.Add(this.nudNumberDigits);
+            this.panelNumberSetting.Controls.Add(this.label14);
+            this.panelNumberSetting.Controls.Add(this.nudIncremental);
+            this.panelNumberSetting.Controls.Add(this.label13);
+            this.panelNumberSetting.Controls.Add(this.nudInitValue);
+            this.panelNumberSetting.Controls.Add(this.label12);
+            this.panelNumberSetting.Controls.Add(this.lblNumberCount2);
+            this.panelNumberSetting.Controls.Add(this.nudNumberCount);
+            this.panelNumberSetting.Controls.Add(this.rdoNumberCustom);
+            this.panelNumberSetting.Controls.Add(this.lblNumberCount1);
+            this.panelNumberSetting.Controls.Add(this.rdoNumberEnd);
+            this.panelNumberSetting.Controls.Add(this.label5);
+            this.panelNumberSetting.Controls.Add(this.rdoNumberStart);
+            this.panelNumberSetting.Controls.Add(this.cbEnableNumber);
+            this.panelNumberSetting.Controls.Add(this.label6);
+            this.panelNumberSetting.Location = new System.Drawing.Point(3, 318);
+            this.panelNumberSetting.Name = "panelNumberSetting";
+            this.panelNumberSetting.Size = new System.Drawing.Size(331, 233);
+            this.panelNumberSetting.TabIndex = 9;
             // 
             // label10
             // 
@@ -710,6 +719,7 @@
             0,
             0,
             0});
+            this.nudNumberDigits.ValueChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label14
             // 
@@ -731,6 +741,7 @@
             0,
             0,
             0});
+            this.nudIncremental.ValueChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label13
             // 
@@ -752,6 +763,7 @@
             this.nudInitValue.Name = "nudInitValue";
             this.nudInitValue.Size = new System.Drawing.Size(58, 23);
             this.nudInitValue.TabIndex = 14;
+            this.nudInitValue.ValueChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label12
             // 
@@ -789,6 +801,7 @@
             0,
             0});
             this.nudNumberCount.Visible = false;
+            this.nudNumberCount.ValueChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // rdoNumberCustom
             // 
@@ -799,7 +812,7 @@
             this.rdoNumberCustom.TabIndex = 12;
             this.rdoNumberCustom.Text = "自定义";
             this.rdoNumberCustom.UseVisualStyleBackColor = true;
-            this.rdoNumberCustom.CheckedChanged += new System.EventHandler(this.rdoNumberSettingRadioButton_CheckedChanged);
+            this.rdoNumberCustom.CheckedChanged += new System.EventHandler(this.RdoNumberSettingRadioButton_CheckedChanged);
             // 
             // lblNumberCount1
             // 
@@ -820,7 +833,7 @@
             this.rdoNumberEnd.TabIndex = 11;
             this.rdoNumberEnd.Text = "末尾";
             this.rdoNumberEnd.UseVisualStyleBackColor = true;
-            this.rdoNumberEnd.CheckedChanged += new System.EventHandler(this.rdoNumberSettingRadioButton_CheckedChanged);
+            this.rdoNumberEnd.CheckedChanged += new System.EventHandler(this.RdoNumberSettingRadioButton_CheckedChanged);
             // 
             // label5
             // 
@@ -841,7 +854,7 @@
             this.rdoNumberStart.TabStop = true;
             this.rdoNumberStart.Text = "开头";
             this.rdoNumberStart.UseVisualStyleBackColor = true;
-            this.rdoNumberStart.CheckedChanged += new System.EventHandler(this.rdoNumberSettingRadioButton_CheckedChanged);
+            this.rdoNumberStart.CheckedChanged += new System.EventHandler(this.RdoNumberSettingRadioButton_CheckedChanged);
             // 
             // cbEnableNumber
             // 
@@ -852,6 +865,7 @@
             this.cbEnableNumber.TabIndex = 0;
             this.cbEnableNumber.Text = "启用编号";
             this.cbEnableNumber.UseVisualStyleBackColor = true;
+            this.cbEnableNumber.CheckedChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label6
             // 
@@ -881,6 +895,7 @@
             this.cbEditFileName.TabIndex = 10;
             this.cbEditFileName.Text = "修改文件名";
             this.cbEditFileName.UseVisualStyleBackColor = true;
+            this.cbEditFileName.CheckedChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // tabOptionControl
             // 
@@ -893,7 +908,7 @@
             this.tabOptionControl.SelectedIndex = 0;
             this.tabOptionControl.Size = new System.Drawing.Size(321, 149);
             this.tabOptionControl.TabIndex = 9;
-            this.tabOptionControl.SelectedIndexChanged += new System.EventHandler(this.tabOptionControl_SelectedIndexChanged);
+            this.tabOptionControl.SelectedIndexChanged += new System.EventHandler(this.TabOptionControl_SelectedIndexChanged);
             // 
             // tabCustom
             // 
@@ -913,6 +928,7 @@
             this.txtNewName.Name = "txtNewName";
             this.txtNewName.Size = new System.Drawing.Size(230, 23);
             this.txtNewName.TabIndex = 1;
+            this.txtNewName.TextChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label2
             // 
@@ -948,6 +964,7 @@
             this.txtInsertText.Name = "txtInsertText";
             this.txtInsertText.Size = new System.Drawing.Size(153, 23);
             this.txtInsertText.TabIndex = 8;
+            this.txtInsertText.TextChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // lblInsertText
             // 
@@ -983,6 +1000,7 @@
             0,
             0,
             0});
+            this.nudInsertCharPosition.ValueChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // lblInsertCharPosition1
             // 
@@ -1002,7 +1020,7 @@
             this.rdoInsertCustom.TabIndex = 3;
             this.rdoInsertCustom.Text = "自定义";
             this.rdoInsertCustom.UseVisualStyleBackColor = true;
-            this.rdoInsertCustom.CheckedChanged += new System.EventHandler(this.rdoInsertRadioButton_CheckedChanged);
+            this.rdoInsertCustom.CheckedChanged += new System.EventHandler(this.RdoInsertRadioButton_CheckedChanged);
             // 
             // rdoInsertEnd
             // 
@@ -1013,7 +1031,7 @@
             this.rdoInsertEnd.TabIndex = 2;
             this.rdoInsertEnd.Text = "末尾";
             this.rdoInsertEnd.UseVisualStyleBackColor = true;
-            this.rdoInsertEnd.CheckedChanged += new System.EventHandler(this.rdoInsertRadioButton_CheckedChanged);
+            this.rdoInsertEnd.CheckedChanged += new System.EventHandler(this.RdoInsertRadioButton_CheckedChanged);
             // 
             // rdoInsertStart
             // 
@@ -1024,7 +1042,7 @@
             this.rdoInsertStart.TabIndex = 1;
             this.rdoInsertStart.Text = "开头";
             this.rdoInsertStart.UseVisualStyleBackColor = true;
-            this.rdoInsertStart.CheckedChanged += new System.EventHandler(this.rdoInsertRadioButton_CheckedChanged);
+            this.rdoInsertStart.CheckedChanged += new System.EventHandler(this.RdoInsertRadioButton_CheckedChanged);
             // 
             // label3
             // 
@@ -1054,6 +1072,7 @@
             this.txtReplaceText.Name = "txtReplaceText";
             this.txtReplaceText.Size = new System.Drawing.Size(220, 23);
             this.txtReplaceText.TabIndex = 3;
+            this.txtReplaceText.TextChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label8
             // 
@@ -1070,6 +1089,7 @@
             this.txtSearchText.Name = "txtSearchText";
             this.txtSearchText.Size = new System.Drawing.Size(220, 23);
             this.txtSearchText.TabIndex = 1;
+            this.txtSearchText.TextChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label7
             // 
@@ -1125,6 +1145,7 @@
             0,
             0,
             0});
+            this.nudDeleteCount.ValueChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // lblDeletePosition2
             // 
@@ -1150,6 +1171,7 @@
             this.txtDeleteText.Name = "txtDeleteText";
             this.txtDeleteText.Size = new System.Drawing.Size(168, 23);
             this.txtDeleteText.TabIndex = 5;
+            this.txtDeleteText.TextChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // nudDeletePosition
             // 
@@ -1167,6 +1189,7 @@
             0,
             0,
             0});
+            this.nudDeletePosition.ValueChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // lblDeletePositon1
             // 
@@ -1186,7 +1209,7 @@
             this.rdoDeleteByPosition.TabIndex = 2;
             this.rdoDeleteByPosition.Text = "指定位置";
             this.rdoDeleteByPosition.UseVisualStyleBackColor = true;
-            this.rdoDeleteByPosition.CheckedChanged += new System.EventHandler(this.rdoDeleteRadioButton_CheckedChanged);
+            this.rdoDeleteByPosition.CheckedChanged += new System.EventHandler(this.RdoDeleteRadioButton_CheckedChanged);
             // 
             // lblDeleteText
             // 
@@ -1206,7 +1229,7 @@
             this.rdoDeletebyContent.TabIndex = 1;
             this.rdoDeletebyContent.Text = "指定内容";
             this.rdoDeletebyContent.UseVisualStyleBackColor = true;
-            this.rdoDeletebyContent.CheckedChanged += new System.EventHandler(this.rdoDeleteRadioButton_CheckedChanged);
+            this.rdoDeletebyContent.CheckedChanged += new System.EventHandler(this.RdoDeleteRadioButton_CheckedChanged);
             // 
             // label9
             // 
@@ -1238,6 +1261,7 @@
             this.rdoAllUp.TabIndex = 17;
             this.rdoAllUp.Text = "小写转大写";
             this.rdoAllUp.UseVisualStyleBackColor = true;
+            this.rdoAllUp.CheckedChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // rdoAllLow
             // 
@@ -1248,6 +1272,7 @@
             this.rdoAllLow.TabIndex = 16;
             this.rdoAllLow.Text = "大写转小写";
             this.rdoAllLow.UseVisualStyleBackColor = true;
+            this.rdoAllLow.CheckedChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // rdoNoToggle
             // 
@@ -1260,6 +1285,7 @@
             this.rdoNoToggle.TabStop = true;
             this.rdoNoToggle.Text = "无";
             this.rdoNoToggle.UseVisualStyleBackColor = true;
+            this.rdoNoToggle.CheckedChanged += new System.EventHandler(this.SetNewFileNameToDataTable);
             // 
             // label4
             // 
@@ -1296,8 +1322,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvFileData)).EndInit();
             this.panel_optionSetting.ResumeLayout(false);
             this.panel_optionSetting.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.panelExtensionSetting.ResumeLayout(false);
+            this.panelExtensionSetting.PerformLayout();
             this.tabExtensionControl.ResumeLayout(false);
             this.tabExtensionCustom.ResumeLayout(false);
             this.tabExtensionCustom.PerformLayout();
@@ -1310,8 +1336,8 @@
             this.tabExtensionDelete.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudExtensionDeleteCount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudExtensionDeletePosition)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.panelNumberSetting.ResumeLayout(false);
+            this.panelNumberSetting.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumberDigits)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudIncremental)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudInitValue)).EndInit();
@@ -1383,7 +1409,7 @@
         private Label lblDeleteText;
         private RadioButton rdoDeletebyContent;
         private Label label9;
-        private Panel panel2;
+        private Panel panelNumberSetting;
         private CheckBox cbEnableNumber;
         private RadioButton rdoNumberCustom;
         private RadioButton rdoNumberEnd;
@@ -1401,7 +1427,7 @@
         private Label label14;
         private Label label15;
         private Label label10;
-        private Panel panel3;
+        private Panel panelExtensionSetting;
         private CheckBox cbEnableExtension;
         private TabControl tabExtensionControl;
         private TabPage tabExtensionCustom;

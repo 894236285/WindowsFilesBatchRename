@@ -25,7 +25,7 @@ namespace WindowsFilesBatchRename
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_chooseFiles_Click(object sender, EventArgs e)
+        private void Btn_chooseFiles_Click(object sender, EventArgs e)
         {
 
             var dialog = new OpenFileDialog();
@@ -61,7 +61,7 @@ namespace WindowsFilesBatchRename
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btn_chooseFolder_Click(object sender, EventArgs e)
+        private void Btn_chooseFolder_Click(object sender, EventArgs e)
         {
             var dialog = new FolderBrowserDialog();
             if (dialog.ShowDialog() != DialogResult.OK) return;
@@ -114,7 +114,7 @@ namespace WindowsFilesBatchRename
         /// </summary>
         /// <param name="dt">待操作的DataTable</param>
         /// <param name="filepath">文件全路径</param>
-        private void InsertDataTable(DataTable dt, string filepath)
+        private static void InsertDataTable(DataTable dt, string filepath)
         {
             var row = dt.NewRow();
             var sourceFIleName = filepath[(filepath.LastIndexOf("\\", StringComparison.Ordinal) + 1)..];
@@ -136,19 +136,28 @@ namespace WindowsFilesBatchRename
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tabOptionControl_SelectedIndexChanged(object sender, EventArgs e)
+        private void TabOptionControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (this.tabOptionControl.SelectedIndex)
             {
-                //当选项变更为“插入”操作时，默认选中“开头”
+                case 0:
+                //当选项变更为“插入”操作时，默认选中“开头”,并使“编号设置”面板为可见
                 case 1:
+                    this.panelNumberSetting.Visible = true;
+                    this.panelExtensionSetting.Location = new Point(3, 557);
                     this.rdoInsertStart.Checked = true;
                     break;
-                //选项当变更为“删除”操作时，默认选中“指定内容”
+                //选项当变更为“删除”操作时，默认选中“指定内容”,并使“编号设置”面板为不可见
+                case 2:
                 case 3:
+                    this.panelNumberSetting.Visible = false;
+                    this.panelExtensionSetting.Location = new Point(3, 318);
+                    this.cbEnableNumber.Checked = false;
                     this.rdoDeletebyContent.Checked = true;
                     break;
             }
+
+            SetNewFileNameToDataTable(sender, e);
         }
 
         /// <summary>
@@ -156,7 +165,7 @@ namespace WindowsFilesBatchRename
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rdoInsertRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void RdoInsertRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (this.rdoInsertStart.Checked || this.rdoInsertEnd.Checked)
             {
@@ -182,14 +191,15 @@ namespace WindowsFilesBatchRename
                 this.lblInsertText.Location = new Point(6, 69);
                 this.txtInsertText.Location = new Point(68, 66);
             }
+            SetNewFileNameToDataTable(sender, e);
         }
-        
+
         /// <summary>
         /// 修改文件名时删除操作的单选按钮变更事件
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rdoDeleteRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void RdoDeleteRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (rdoDeletebyContent.Checked)
             {
@@ -223,6 +233,7 @@ namespace WindowsFilesBatchRename
                 this.nudDeleteCount.Location = new Point(62, 64);
                 this.lblDelteCount2.Location = new Point(126, 66);
             }
+            SetNewFileNameToDataTable(sender, e);
         }
 
         /// <summary>
@@ -230,7 +241,7 @@ namespace WindowsFilesBatchRename
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rdoNumberSettingRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void RdoNumberSettingRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (this.rdoNumberStart.Checked || this.rdoNumberEnd.Checked)
             {
@@ -244,6 +255,7 @@ namespace WindowsFilesBatchRename
                 this.lblNumberCount2.Visible = true;
                 this.nudNumberCount.Visible = true;
             }
+            SetNewFileNameToDataTable(sender, e);
         }
 
         /// <summary>
@@ -251,7 +263,7 @@ namespace WindowsFilesBatchRename
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tabExtensionControl_SelectedIndexChanged(object sender, EventArgs e)
+        private void TabExtensionControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (this.tabExtensionControl.SelectedIndex)
             {
@@ -262,6 +274,7 @@ namespace WindowsFilesBatchRename
                     this.rdoExtensionDeleteByContent.Checked = true;
                     break;
             }
+            SetNewFileNameToDataTable(sender, e);
         }
 
         /// <summary>
@@ -269,7 +282,7 @@ namespace WindowsFilesBatchRename
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rdoExtensionInsertRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void RdoExtensionInsertRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (this.rdoExtensionInsertStart.Checked || this.rdoExtensionInsertEnd.Checked)
             {
@@ -295,6 +308,7 @@ namespace WindowsFilesBatchRename
                 this.lblExtensionInsertText.Location = new Point(12, 75);
                 this.txtExtensionInsertText.Location = new Point(69, 72);
             }
+            SetNewFileNameToDataTable(sender, e);
         }
 
         /// <summary>
@@ -302,7 +316,7 @@ namespace WindowsFilesBatchRename
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rdoExtensionDeleteRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void RdoExtensionDeleteRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (this.rdoExtensionDeleteByContent.Checked)
             {
@@ -336,257 +350,315 @@ namespace WindowsFilesBatchRename
                 this.nudExtensionDeleteCount.Location = new Point(62, 64);
                 this.lblExtensionDeleteCount2.Location = new Point(126, 66);
             }
+            SetNewFileNameToDataTable(sender, e);
         }
 
         #endregion
 
-        private void ModifyFileName(string filepath,string newName)
+        #region 开始批量重命名
+        private static bool ModifyFileName(string filepath, string newName)
         {
             var file = new FileInfo(filepath);
 
-            if (file.Exists)
+            if (!file.Exists) return false;
+
+            try
             {
-                File.Move(filepath, newName);
+                File.Move(filepath, filepath[..(filepath.LastIndexOf("\\", StringComparison.Ordinal) + 1)] + newName);
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
 
-        private void btnStartWork_Click(object sender, EventArgs e)
+        /// <summary>
+        /// 开始批量重命名
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnStartWork_Click(object sender, EventArgs e)
         {
             if (this.dgvFileData.DataSource is not DataTable dt || dt.Rows.Count < 1) return;
-
-            var number = -99;
-
             for (var i = 0; i < dt.Rows.Count; i++)
             {
                 var row = dt.Rows[i];
-
-                var sourceFileFullName = row["SourceFileName"] + string.Empty;
+                var newFileName = row["NewFileName"] + string.Empty;
+                if (string.IsNullOrWhiteSpace(newFileName))
+                {
+                    MessageBox.Show(Resources.OptionFirst);
+                    return;
+                }
 
                 var filePath = row["FilePath"] + string.Empty;
 
-                var sourceFileName = sourceFileFullName[..sourceFileFullName.LastIndexOf('.')];
-
-                var fileExtension = sourceFileFullName[(sourceFileFullName.LastIndexOf('.') + 1)..];
-
-                var newFileName = string.Empty;
-
-                var newFileExtension = string.Empty;
-                
-                //需要修改文件名
-                if (this.cbEditFileName.Checked)
+                if (ModifyFileName(filePath, newFileName))
                 {
-                    switch (this.tabOptionControl.SelectedIndex)
+                    row["OptionState"] = "操作成功";
+                }
+                else
+                {
+                    row["OptionState"] = "操作失败";
+                }
+            }
+            this.dgvFileData.DataSource = dt;
+        }
+
+        #endregion
+
+        #region 重命名预览
+        /// <summary>
+        /// 修改文件名称，添加至DataTable中以供预览
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SetNewFileNameToDataTable(object sender, EventArgs e)
+        {
+            if (this.dgvFileData.DataSource is not DataTable dt || dt.Rows.Count < 1) return;
+            if (!this.cbEditFileName.Checked && !this.cbEnableNumber.Checked && !this.cbEnableExtension.Checked && this.rdoNoToggle.Checked) return;
+
+            var number = -99;
+
+            try
+            {
+                for (var i = 0; i < dt.Rows.Count; i++)
+                {
+                    var row = dt.Rows[i];
+
+                    var sourceFileFullName = row["SourceFileName"] + string.Empty;
+
+                    var sourceFileName = sourceFileFullName[..sourceFileFullName.LastIndexOf('.')];
+
+                    var fileExtension = sourceFileFullName[(sourceFileFullName.LastIndexOf('.') + 1)..];
+
+                    var newFileName = string.Empty;
+
+                    var newFileExtension = string.Empty;
+
+                    //需要修改文件名
+                    if (this.cbEditFileName.Checked)
                     {
-                        case 0:
-                            var newName = this.txtNewName.Text;
-                            if (string.IsNullOrWhiteSpace(newName))
-                            {
-                                MessageBox.Show(Resources.NewFileName);
-                                return;
-                            }
-                            newFileName = newName;
-                            break;
-                        case 1:
-                            if (string.IsNullOrWhiteSpace(this.txtInsertText.Text))
-                            {
-                                MessageBox.Show(Resources.NewContent);
-                                return;
-                            }
-                            if (this.rdoInsertStart.Checked)
-                            {
-                                newFileName = this.txtInsertText.Text + sourceFileName;
-                            }
-                            else if (this.rdoInsertEnd.Checked)
-                            {
-                                newFileName = sourceFileName + this.txtInsertText.Text;
-                            }
-                            else
-                            {
-                                var position = this.nudInsertCharPosition.Value;
-                                if (position <= 0) 
+                        switch (this.tabOptionControl.SelectedIndex)
+                        {
+                            case 0:
+                                var newName = this.txtNewName.Text;
+                                if (string.IsNullOrWhiteSpace(newName))
                                 {
-                                    MessageBox.Show(Resources.GreaterThanZero);
+                                    //MessageBox.Show(Resources.NewFileName);
+                                    return;
+                                }
+                                newFileName = newName;
+                                break;
+                            case 1:
+                                if (string.IsNullOrWhiteSpace(this.txtInsertText.Text))
+                                {
+                                    //MessageBox.Show(Resources.NewContent);
+                                    return;
+                                }
+                                if (this.rdoInsertStart.Checked)
+                                {
+                                    newFileName = this.txtInsertText.Text + sourceFileName;
+                                }
+                                else if (this.rdoInsertEnd.Checked)
+                                {
+                                    newFileName = sourceFileName + this.txtInsertText.Text;
+                                }
+                                else
+                                {
+                                    var position = this.nudInsertCharPosition.Value;
+                                    if (position <= 0)
+                                    {
+                                        //MessageBox.Show(Resources.GreaterThanZero);
+                                        return;
+                                    }
+
+                                    newFileName = sourceFileName.Insert((int)position, this.txtInsertText.Text);
+                                }
+                                break;
+                            case 2:
+                                var searchText = this.txtSearchText.Text;
+                                var replaceText = this.txtReplaceText.Text;
+                                if (string.IsNullOrWhiteSpace(searchText))
+                                {
+                                    //MessageBox.Show(Resources.SearchContent);
                                     return;
                                 }
 
-                                newFileName = sourceFileName.Insert((int)position, this.txtInsertText.Text);
-                            }
-                            break;
-                        case 2:
-                            var searchText = this.txtSearchText.Text;
-                            var replaceText = this.txtReplaceText.Text;
-                            if (string.IsNullOrWhiteSpace(searchText))
-                            {
-                                MessageBox.Show(Resources.SearchContent);
-                                return;
-                            }
-
-                            newFileName = sourceFileName.Replace(searchText, replaceText);
-                            break;
-                        case 3:
-                            if (this.rdoDeletebyContent.Checked)
-                            {
-                                var content = this.txtDeleteText.Text;
-                                if (string.IsNullOrWhiteSpace(content))
+                                newFileName = sourceFileName.Replace(searchText, replaceText);
+                                break;
+                            case 3:
+                                if (this.rdoDeletebyContent.Checked)
                                 {
-                                    MessageBox.Show(Resources.DeleteContent);
-                                    return;
-                                }
+                                    var content = this.txtDeleteText.Text;
+                                    if (string.IsNullOrWhiteSpace(content))
+                                    {
+                                        //MessageBox.Show(Resources.DeleteContent);
+                                        return;
+                                    }
 
-                                newFileName = sourceFileName.Replace(content, string.Empty);
-                            }
-                            else
-                            {
-                                var deletePosition = this.nudDeletePosition.Value;
-                                var deleteCount = this.nudDeleteCount.Value;
-                                if (deletePosition <= 0 || deleteCount <= 0) 
+                                    newFileName = sourceFileName.Replace(content, string.Empty);
+                                }
+                                else
                                 {
-                                    MessageBox.Show(Resources.PositionAndCountMustGreaterThanZero);
-                                    return;
-                                }
+                                    var deletePosition = this.nudDeletePosition.Value;
+                                    var deleteCount = this.nudDeleteCount.Value;
+                                    if (deletePosition <= 0 || deleteCount <= 0)
+                                    {
+                                        //MessageBox.Show(Resources.PositionAndCountMustGreaterThanZero);
+                                        return;
+                                    }
 
-                                newFileName = sourceFileName.Remove((int)deletePosition - 1, (int)deleteCount);
-                            }
-                            break;
+                                    newFileName = sourceFileName.Remove((int)deletePosition - 1, (int)deleteCount);
+                                }
+                                break;
+                        }
                     }
+
+                    //需要进行编号
+                    if (this.cbEnableNumber.Checked)
+                    {
+                        //初始数值
+                        var initialValue = this.nudInitValue.Value;
+                        //每次递增
+                        var incremental = this.nudIncremental.Value;
+                        //数字位数
+                        var numberDigits = this.nudNumberDigits.Value;
+
+                        var currentNumber = (number == -99 ? (int)initialValue : number + (int)incremental);
+
+                        if (this.rdoNumberStart.Checked)
+                        {
+                            newFileName = AddPrefix(currentNumber, (int)numberDigits) + newFileName;
+                        }
+                        else if (this.rdoNumberEnd.Checked)
+                        {
+                            newFileName = newFileName + AddPrefix(currentNumber, (int)numberDigits);
+                        }
+                        else
+                        {
+                            var numberCount = this.nudNumberCount.Value;
+                            newFileName = newFileName.Insert((int)numberCount - 1,
+                                AddPrefix(currentNumber, (int)numberDigits));
+                        }
+
+                        number = currentNumber;
+                    }
+
+                    //需要修改扩展名
+                    if (this.cbEnableExtension.Checked)
+                    {
+                        switch (this.tabExtensionControl.SelectedIndex)
+                        {
+                            case 0:
+                                if (string.IsNullOrWhiteSpace(this.txtNewExtension.Text))
+                                {
+                                    //MessageBox.Show(Resources.NewExtension);
+                                    return;
+                                }
+                                newFileExtension = this.txtNewExtension.Text;
+                                break;
+                            case 1:
+                                if (string.IsNullOrWhiteSpace(this.txtExtensionInsertText.Text))
+                                {
+                                    //MessageBox.Show(Resources.NewContent);
+                                    return;
+                                }
+                                if (this.rdoExtensionInsertStart.Checked)
+                                {
+                                    newFileExtension = this.txtExtensionInsertText.Text + fileExtension;
+                                }
+                                else if (this.rdoExtensionInsertEnd.Checked)
+                                {
+                                    newFileExtension = fileExtension + this.txtExtensionInsertText.Text;
+                                }
+                                else
+                                {
+                                    var position = this.nudExtensionInsertChar.Value;
+                                    if (position <= 0)
+                                    {
+                                        //MessageBox.Show(Resources.GreaterThanZero);
+                                        return;
+                                    }
+
+                                    newFileExtension = sourceFileName.Insert((int)position, this.txtExtensionInsertText.Text);
+                                }
+                                break;
+                            case 2:
+                                var searchText = this.txtExtensionSearchText.Text;
+                                var replaceText = this.txtExtensionReplaceText.Text;
+                                if (string.IsNullOrWhiteSpace(searchText))
+                                {
+                                    //MessageBox.Show(Resources.SearchContent);
+                                    return;
+                                }
+
+                                newFileExtension = fileExtension.Replace(searchText, replaceText);
+                                break;
+                            case 3:
+                                if (this.rdoExtensionDeleteByContent.Checked)
+                                {
+                                    var content = this.txtExtensionDeleteContent.Text;
+                                    if (string.IsNullOrWhiteSpace(content))
+                                    {
+                                        //MessageBox.Show(Resources.DeleteContent);
+                                        return;
+                                    }
+
+                                    newFileExtension = fileExtension.Replace(content, string.Empty);
+                                }
+                                else
+                                {
+                                    var deletePosition = this.nudExtensionDeletePosition.Value;
+                                    var deleteCount = this.nudExtensionDeleteCount.Value;
+                                    if (deletePosition <= 0 || deleteCount <= 0)
+                                    {
+                                        //MessageBox.Show(Resources.PositionAndCountMustGreaterThanZero);
+                                        return;
+                                    }
+                                    newFileExtension = fileExtension.Remove((int)deletePosition - 1, (int)deleteCount);
+                                }
+                                break;
+                        }
+                    }
+
+                    var newFileFullName = (string.IsNullOrWhiteSpace(newFileName) ? sourceFileName : newFileName) + "." +
+                                      (string.IsNullOrWhiteSpace(newFileExtension) ? fileExtension : newFileExtension);
+
+                    if (this.rdoAllLow.Checked)
+                        newFileFullName = newFileFullName.ToLower();
+                    else if (rdoAllUp.Checked)
+                        newFileFullName = newFileFullName.ToUpper();
+
+                    row["NewFileName"] = newFileFullName;
+
                 }
 
-                //需要进行编号
-                if (this.cbEnableNumber.Checked)
-                {
-                    //初始数值
-                    var initialValue = this.nudInitValue.Value;
-                    //每次递增
-                    var incremental = this.nudIncremental.Value;
-                    //数字位数
-                    var numberDigits = this.nudNumberDigits.Value;
-
-                    var currentNumber = (number == -99 ? (int)initialValue : number + (int)incremental);
-
-                    if (this.rdoNumberStart.Checked)
-                    {
-                        newFileName = AddPrefix(currentNumber, (int)numberDigits) + newFileName;
-                    }
-                    else if (this.rdoNumberEnd.Checked)
-                    {
-                        newFileName = newFileName + AddPrefix(currentNumber, (int)numberDigits);
-                    }
-                    else
-                    {
-                        var numberCount = this.nudNumberCount.Value;
-                        newFileName = newFileName.Insert((int)numberCount - 1,
-                            AddPrefix(currentNumber, (int)numberDigits));
-                    }
-
-                    number = currentNumber;
-                }
-
-                //需要修改扩展名
-                if (this.cbEnableExtension.Checked)
-                {
-                    switch (this.tabExtensionControl.SelectedIndex)
-                    {
-                        case 0:
-                            if (string.IsNullOrWhiteSpace(this.txtNewExtension.Text))
-                            {
-                                MessageBox.Show(Resources.NewExtension);
-                                return;
-                            }
-                            newFileExtension = this.txtNewExtension.Text;
-                            break;
-                        case 1:
-                            if (string.IsNullOrWhiteSpace(this.txtExtensionInsertText.Text))
-                            {
-                                MessageBox.Show(Resources.NewContent);
-                                return;
-                            }
-                            if (this.rdoExtensionInsertStart.Checked)
-                            {
-                                newFileExtension = this.txtExtensionInsertText.Text + fileExtension;
-                            }
-                            else if (this.rdoExtensionInsertEnd.Checked)
-                            {
-                                newFileExtension = fileExtension + this.txtExtensionInsertText.Text;
-                            }
-                            else
-                            {
-                                var position = this.nudExtensionInsertChar.Value;
-                                if (position <= 0)
-                                {
-                                    MessageBox.Show(Resources.GreaterThanZero);
-                                    return;
-                                }
-
-                                newFileExtension = sourceFileName.Insert((int)position, this.txtExtensionInsertText.Text);
-                            }
-                            break;
-                        case 2:
-                            var searchText = this.txtExtensionSearchText.Text;
-                            var replaceText = this.txtExtensionReplaceText.Text;
-                            if (string.IsNullOrWhiteSpace(searchText))
-                            {
-                                MessageBox.Show(Resources.SearchContent);
-                                return;
-                            }
-
-                            newFileExtension = fileExtension.Replace(searchText, replaceText);
-                            break;
-                        case 3:
-                            if (this.rdoExtensionDeleteByContent.Checked)
-                            {
-                                var content = this.txtExtensionDeleteContent.Text;
-                                if (string.IsNullOrWhiteSpace(content))
-                                {
-                                    MessageBox.Show(Resources.DeleteContent);
-                                    return;
-                                }
-
-                                newFileExtension = fileExtension.Replace(content, string.Empty);
-                            }
-                            else
-                            {
-                                var deletePosition = this.nudExtensionDeletePosition.Value;
-                                var deleteCount = this.nudExtensionDeleteCount.Value;
-                                if (deletePosition <= 0 || deleteCount <= 0)
-                                {
-                                    MessageBox.Show(Resources.PositionAndCountMustGreaterThanZero);
-                                    return;
-                                }
-                                newFileExtension = fileExtension.Remove((int)deletePosition - 1, (int)deleteCount);
-                            }
-                            break;
-                    }
-                }
-
-                var newFileFullName = (string.IsNullOrWhiteSpace(newFileName) ? sourceFileName : newFileName) + "." +
-                                  (string.IsNullOrWhiteSpace(newFileExtension) ? fileExtension : newFileExtension);
-
-                if (this.rdoAllLow.Checked)
-                    newFileFullName = newFileFullName.ToLower();
-                else if (rdoAllUp.Checked)
-                    newFileFullName = newFileFullName.ToUpper();
-                
-
-                row["NewFileName"] = newFileFullName;
-
-                if (filePath == string.Empty)
-                {
-                    ModifyFileName(filePath, newFileFullName);
-                }
+            }
+            catch
+            {
+                return;
             }
 
             this.dgvFileData.DataSource = dt;
         }
-        
-        private static string AddPrefix(int currentNumber,int numberDigits)
+
+        /// <summary>
+        /// 添加编号的前缀
+        /// </summary>
+        /// <param name="currentNumber"></param>
+        /// <param name="numberDigits"></param>
+        /// <returns></returns>
+        private static string AddPrefix(int currentNumber, int numberDigits)
         {
             var currentNumberDigits = currentNumber.ToString().Length;
             if (numberDigits == 1 || numberDigits - currentNumberDigits <= 0) return currentNumber + string.Empty;
-            
+
             return new string('0', numberDigits - currentNumberDigits) + currentNumber;
-            
+
         }
-        
+
+        #endregion
 
     }
 }
